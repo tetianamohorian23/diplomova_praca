@@ -1,0 +1,16 @@
+train_frozen_heads.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  y = torch.from_numpy(data["label_id"].to_numpy())
+seed 0: val_f1(clean+noisy)=0.529 clean test_f1=0.732
+seed 1: val_f1(clean+noisy)=0.537 clean test_f1=0.762
+seed 2: val_f1(clean+noisy)=0.555 clean test_f1=0.732
+seed 3: val_f1(clean+noisy)=0.547 clean test_f1=0.746
+seed 4: val_f1(clean+noisy)=0.536 clean test_f1=0.708
+{'condition': 'clean', 'standard_F1': 0.7168652023058947, 'noise_robust_F1': 0.7742900354940916}
+{'condition': 'white_20', 'standard_F1': 0.5062474644419285, 'noise_robust_F1': 0.6737811015420334}
+{'condition': 'white_10', 'standard_F1': 0.24798736925847537, 'noise_robust_F1': 0.5558386972133939}
+{'condition': 'white_5', 'standard_F1': 0.10289883681115705, 'noise_robust_F1': 0.46672342604393047}
+{'condition': 'white_0', 'standard_F1': 0.03574407244132015, 'noise_robust_F1': 0.3841785766961044}
+{'condition': 'pink_10', 'standard_F1': 0.33868776655821076, 'noise_robust_F1': 0.5567446987288528}
+{'condition': 'babble_20', 'standard_F1': 0.5443487991597482, 'noise_robust_F1': 0.7027638893227814}
+{'condition': 'babble_10', 'standard_F1': 0.29083111734943845, 'noise_robust_F1': 0.5287050690455304}
+{'condition': 'babble_5', 'standard_F1': 0.18469889957428776, 'noise_robust_F1': 0.43427067907933026}

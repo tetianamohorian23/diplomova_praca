@@ -1,0 +1,56 @@
+loco__none_0__seed2__hold-CREMA-D: device=cuda train=1963 val=1960 test=7442
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 248/248 [00:00<00:00, 13582.48it/s]
+epoch 1 50/246 loss=1.971 elapsed=1m
+epoch 1 100/246 loss=1.967 elapsed=1m
+epoch 1 150/246 loss=1.952 elapsed=1m
+epoch 1 200/246 loss=1.926 elapsed=1m
+epoch 1 246/246 loss=1.877 elapsed=1m
+epoch 1: val_macro_f1=0.1851 val_acc=0.2342
+epoch 2 50/246 loss=1.619 elapsed=2m
+epoch 2 100/246 loss=1.611 elapsed=2m
+epoch 2 150/246 loss=1.557 elapsed=3m
+epoch 2 200/246 loss=1.509 elapsed=3m
+epoch 2 246/246 loss=1.487 elapsed=3m
+epoch 2: val_macro_f1=0.3870 val_acc=0.4224
+epoch 3 50/246 loss=1.228 elapsed=3m
+epoch 3 100/246 loss=1.190 elapsed=3m
+epoch 3 150/246 loss=1.179 elapsed=4m
+epoch 3 200/246 loss=1.164 elapsed=4m
+epoch 3 246/246 loss=1.135 elapsed=4m
+epoch 3: val_macro_f1=0.3987 val_acc=0.4281
+epoch 4 50/246 loss=0.941 elapsed=4m
+epoch 4 100/246 loss=0.928 elapsed=5m
+epoch 4 150/246 loss=0.942 elapsed=5m
+epoch 4 200/246 loss=0.946 elapsed=5m
+epoch 4 246/246 loss=0.943 elapsed=5m
+epoch 4: val_macro_f1=0.4196 val_acc=0.4464
+epoch 5 50/246 loss=0.813 elapsed=6m
+epoch 5 100/246 loss=0.814 elapsed=6m
+epoch 5 150/246 loss=0.838 elapsed=6m
+epoch 5 200/246 loss=0.822 elapsed=6m
+epoch 5 246/246 loss=0.821 elapsed=6m
+epoch 5: val_macro_f1=0.4770 val_acc=0.5071
+epoch 6 50/246 loss=0.805 elapsed=7m
+epoch 6 100/246 loss=0.793 elapsed=7m
+epoch 6 150/246 loss=0.762 elapsed=7m
+epoch 6 200/246 loss=0.760 elapsed=7m
+epoch 6 246/246 loss=0.771 elapsed=8m
+epoch 6: val_macro_f1=0.4887 val_acc=0.5173
+epoch 7 50/246 loss=0.757 elapsed=8m
+epoch 7 100/246 loss=0.727 elapsed=8m
+epoch 7 150/246 loss=0.711 elapsed=8m
+epoch 7 200/246 loss=0.710 elapsed=9m
+epoch 7 246/246 loss=0.716 elapsed=9m
+epoch 7: val_macro_f1=0.5383 val_acc=0.5607
+epoch 8 50/246 loss=0.691 elapsed=9m
+epoch 8 100/246 loss=0.722 elapsed=9m
+epoch 8 150/246 loss=0.714 elapsed=10m
+epoch 8 200/246 loss=0.708 elapsed=10m
+epoch 8 246/246 loss=0.707 elapsed=10m
+epoch 8: val_macro_f1=0.5317 val_acc=0.5531
+.venv-gpu\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+DONE loco__none_0__seed2__hold-CREMA-D: test_macro_f1=0.4618 acc=0.4621, peak VRAM 2.8 GB

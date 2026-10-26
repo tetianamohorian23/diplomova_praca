@@ -1,0 +1,149 @@
+wavlm_v2__none_0__seed1: device=cuda train=6705 val=3190 test=3511
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 52633.07it/s]
+epoch 1 50/839 loss=2.086 elapsed=0m
+epoch 1 100/839 loss=2.088 elapsed=1m
+epoch 1 150/839 loss=2.091 elapsed=1m
+epoch 1 200/839 loss=2.091 elapsed=1m
+epoch 1 250/839 loss=2.086 elapsed=1m
+epoch 1 300/839 loss=2.078 elapsed=1m
+epoch 1 350/839 loss=2.062 elapsed=1m
+epoch 1 400/839 loss=2.041 elapsed=1m
+epoch 1 450/839 loss=2.027 elapsed=2m
+epoch 1 500/839 loss=2.013 elapsed=2m
+epoch 1 550/839 loss=2.006 elapsed=2m
+epoch 1 600/839 loss=1.991 elapsed=2m
+epoch 1 650/839 loss=1.975 elapsed=2m
+epoch 1 700/839 loss=1.958 elapsed=2m
+epoch 1 750/839 loss=1.946 elapsed=2m
+epoch 1 800/839 loss=1.928 elapsed=3m
+epoch 1 839/839 loss=1.913 elapsed=3m
+epoch 1: val_macro_f1=0.3693 val_acc=0.3881
+epoch 2 50/839 loss=1.548 elapsed=3m
+epoch 2 100/839 loss=1.513 elapsed=4m
+epoch 2 150/839 loss=1.525 elapsed=4m
+epoch 2 200/839 loss=1.511 elapsed=4m
+epoch 2 250/839 loss=1.488 elapsed=4m
+epoch 2 300/839 loss=1.464 elapsed=4m
+epoch 2 350/839 loss=1.464 elapsed=4m
+epoch 2 400/839 loss=1.451 elapsed=4m
+epoch 2 450/839 loss=1.441 elapsed=5m
+epoch 2 500/839 loss=1.428 elapsed=5m
+epoch 2 550/839 loss=1.420 elapsed=5m
+epoch 2 600/839 loss=1.414 elapsed=5m
+epoch 2 650/839 loss=1.404 elapsed=5m
+epoch 2 700/839 loss=1.396 elapsed=5m
+epoch 2 750/839 loss=1.393 elapsed=6m
+epoch 2 800/839 loss=1.386 elapsed=6m
+epoch 2 839/839 loss=1.381 elapsed=6m
+epoch 2: val_macro_f1=0.5256 val_acc=0.5524
+epoch 3 50/839 loss=1.261 elapsed=6m
+epoch 3 100/839 loss=1.231 elapsed=6m
+epoch 3 150/839 loss=1.233 elapsed=7m
+epoch 3 200/839 loss=1.241 elapsed=7m
+epoch 3 250/839 loss=1.241 elapsed=7m
+epoch 3 300/839 loss=1.229 elapsed=7m
+epoch 3 350/839 loss=1.221 elapsed=7m
+epoch 3 400/839 loss=1.218 elapsed=7m
+epoch 3 450/839 loss=1.221 elapsed=7m
+epoch 3 500/839 loss=1.219 elapsed=8m
+epoch 3 550/839 loss=1.212 elapsed=8m
+epoch 3 600/839 loss=1.206 elapsed=8m
+epoch 3 650/839 loss=1.208 elapsed=8m
+epoch 3 700/839 loss=1.204 elapsed=8m
+epoch 3 750/839 loss=1.202 elapsed=8m
+epoch 3 800/839 loss=1.198 elapsed=8m
+epoch 3 839/839 loss=1.192 elapsed=9m
+epoch 3: val_macro_f1=0.5229 val_acc=0.5389
+epoch 4 50/839 loss=1.058 elapsed=9m
+epoch 4 100/839 loss=1.077 elapsed=9m
+epoch 4 150/839 loss=1.102 elapsed=9m
+epoch 4 200/839 loss=1.106 elapsed=9m
+epoch 4 250/839 loss=1.099 elapsed=10m
+epoch 4 300/839 loss=1.091 elapsed=10m
+epoch 4 350/839 loss=1.094 elapsed=10m
+epoch 4 400/839 loss=1.090 elapsed=10m
+epoch 4 450/839 loss=1.091 elapsed=10m
+epoch 4 500/839 loss=1.079 elapsed=10m
+epoch 4 550/839 loss=1.079 elapsed=10m
+epoch 4 600/839 loss=1.075 elapsed=11m
+epoch 4 650/839 loss=1.078 elapsed=11m
+epoch 4 700/839 loss=1.079 elapsed=11m
+epoch 4 750/839 loss=1.082 elapsed=11m
+epoch 4 800/839 loss=1.088 elapsed=11m
+epoch 4 839/839 loss=1.090 elapsed=11m
+epoch 4: val_macro_f1=0.5336 val_acc=0.5602
+epoch 5 50/839 loss=0.937 elapsed=12m
+epoch 5 100/839 loss=0.978 elapsed=12m
+epoch 5 150/839 loss=0.976 elapsed=12m
+epoch 5 200/839 loss=0.975 elapsed=12m
+epoch 5 250/839 loss=0.985 elapsed=12m
+epoch 5 300/839 loss=1.003 elapsed=12m
+epoch 5 350/839 loss=1.003 elapsed=13m
+epoch 5 400/839 loss=1.002 elapsed=13m
+epoch 5 450/839 loss=1.004 elapsed=13m
+epoch 5 500/839 loss=1.006 elapsed=13m
+epoch 5 550/839 loss=1.004 elapsed=13m
+epoch 5 600/839 loss=1.008 elapsed=13m
+epoch 5 650/839 loss=1.011 elapsed=13m
+epoch 5 700/839 loss=1.005 elapsed=14m
+epoch 5 750/839 loss=1.009 elapsed=14m
+epoch 5 800/839 loss=1.009 elapsed=14m
+epoch 5 839/839 loss=1.008 elapsed=14m
+epoch 5: val_macro_f1=0.5722 val_acc=0.6031
+epoch 6 50/839 loss=0.976 elapsed=14m
+epoch 6 100/839 loss=0.985 elapsed=15m
+epoch 6 150/839 loss=0.977 elapsed=15m
+epoch 6 200/839 loss=0.954 elapsed=15m
+epoch 6 250/839 loss=0.944 elapsed=15m
+epoch 6 300/839 loss=0.957 elapsed=15m
+epoch 6 350/839 loss=0.955 elapsed=15m
+epoch 6 400/839 loss=0.956 elapsed=15m
+epoch 6 450/839 loss=0.955 elapsed=16m
+epoch 6 500/839 loss=0.962 elapsed=16m
+epoch 6 550/839 loss=0.962 elapsed=16m
+epoch 6 600/839 loss=0.961 elapsed=16m
+epoch 6 650/839 loss=0.964 elapsed=16m
+epoch 6 700/839 loss=0.962 elapsed=16m
+epoch 6 750/839 loss=0.965 elapsed=16m
+epoch 6 800/839 loss=0.961 elapsed=17m
+epoch 6 839/839 loss=0.958 elapsed=17m
+epoch 6: val_macro_f1=0.5378 val_acc=0.5690
+epoch 7 50/839 loss=0.887 elapsed=17m
+epoch 7 100/839 loss=0.884 elapsed=17m
+epoch 7 150/839 loss=0.906 elapsed=17m
+epoch 7 200/839 loss=0.921 elapsed=18m
+epoch 7 250/839 loss=0.927 elapsed=18m
+epoch 7 300/839 loss=0.932 elapsed=18m
+epoch 7 350/839 loss=0.929 elapsed=18m
+epoch 7 400/839 loss=0.925 elapsed=18m
+epoch 7 450/839 loss=0.931 elapsed=18m
+epoch 7 500/839 loss=0.929 elapsed=18m
+epoch 7 550/839 loss=0.935 elapsed=19m
+epoch 7 600/839 loss=0.931 elapsed=19m
+epoch 7 650/839 loss=0.927 elapsed=19m
+epoch 7 700/839 loss=0.924 elapsed=19m
+epoch 7 750/839 loss=0.925 elapsed=19m
+epoch 7 800/839 loss=0.925 elapsed=19m
+epoch 7 839/839 loss=0.926 elapsed=19m
+epoch 7: val_macro_f1=0.5595 val_acc=0.5918
+epoch 8 50/839 loss=0.972 elapsed=20m
+epoch 8 100/839 loss=0.926 elapsed=20m
+epoch 8 150/839 loss=0.896 elapsed=20m
+epoch 8 200/839 loss=0.903 elapsed=20m
+epoch 8 250/839 loss=0.912 elapsed=20m
+epoch 8 300/839 loss=0.906 elapsed=21m
+epoch 8 350/839 loss=0.906 elapsed=21m
+epoch 8 400/839 loss=0.907 elapsed=21m
+epoch 8 450/839 loss=0.905 elapsed=21m
+epoch 8 500/839 loss=0.904 elapsed=21m
+epoch 8 550/839 loss=0.902 elapsed=21m
+epoch 8 600/839 loss=0.905 elapsed=22m
+epoch 8 650/839 loss=0.911 elapsed=22m
+epoch 8 700/839 loss=0.909 elapsed=22m
+epoch 8 750/839 loss=0.909 elapsed=22m
+epoch 8 800/839 loss=0.906 elapsed=22m
+epoch 8 839/839 loss=0.905 elapsed=22m
+epoch 8: val_macro_f1=0.5583 val_acc=0.5893
+early stopping
+DONE wavlm_v2__none_0__seed1: test_macro_f1=0.7043 acc=0.7143, peak VRAM 2.8 GB

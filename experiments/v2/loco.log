@@ -1,0 +1,110 @@
+train_frozen_heads.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  y = torch.from_numpy(data["label_id"].to_numpy())
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__none_0__seed0__hold-CREMA-D: val=0.417 test_f1=0.300 (22s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__none_0__seed1__hold-CREMA-D: val=0.431 test_f1=0.289 (70s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__none_0__seed2__hold-CREMA-D: val=0.428 test_f1=0.297 (58s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__aux_0.1__seed0__hold-CREMA-D: val=0.459 test_f1=0.280 (61s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__aux_0.1__seed1__hold-CREMA-D: val=0.456 test_f1=0.276 (66s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__aux_0.1__seed2__hold-CREMA-D: val=0.405 test_f1=0.267 (89s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__grl_0.05__seed0__hold-CREMA-D: val=0.489 test_f1=0.284 (54s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__grl_0.05__seed1__hold-CREMA-D: val=0.466 test_f1=0.364 (59s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__grl_0.05__seed2__hold-CREMA-D: val=0.403 test_f1=0.237 (51s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__none_0__seed0__hold-EMODB: val=0.566 test_f1=0.358 (207s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__none_0__seed1__hold-EMODB: val=0.572 test_f1=0.343 (270s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__none_0__seed2__hold-EMODB: val=0.586 test_f1=0.337 (276s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__aux_0.1__seed0__hold-EMODB: val=0.559 test_f1=0.360 (94s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__aux_0.1__seed1__hold-EMODB: val=0.595 test_f1=0.359 (47s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__aux_0.1__seed2__hold-EMODB: val=0.553 test_f1=0.319 (29s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__grl_0.05__seed0__hold-EMODB: val=0.600 test_f1=0.350 (40s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__grl_0.05__seed1__hold-EMODB: val=0.553 test_f1=0.312 (22s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__grl_0.05__seed2__hold-EMODB: val=0.562 test_f1=0.295 (29s)
+wavlm_base_plus__none_0__seed0__hold-RAVDESS: val=0.457 test_f1=0.142 (27s)
+wavlm_base_plus__none_0__seed1__hold-RAVDESS: val=0.453 test_f1=0.188 (20s)
+wavlm_base_plus__none_0__seed2__hold-RAVDESS: val=0.483 test_f1=0.138 (21s)
+wavlm_base_plus__aux_0.1__seed0__hold-RAVDESS: val=0.456 test_f1=0.191 (25s)
+wavlm_base_plus__aux_0.1__seed1__hold-RAVDESS: val=0.433 test_f1=0.131 (16s)
+wavlm_base_plus__aux_0.1__seed2__hold-RAVDESS: val=0.472 test_f1=0.150 (32s)
+wavlm_base_plus__grl_0.05__seed0__hold-RAVDESS: val=0.448 test_f1=0.277 (23s)
+wavlm_base_plus__grl_0.05__seed1__hold-RAVDESS: val=0.441 test_f1=0.311 (20s)
+wavlm_base_plus__grl_0.05__seed2__hold-RAVDESS: val=0.453 test_f1=0.150 (16s)
+wavlm_base_plus__none_0__seed0__hold-SAVEE: val=0.542 test_f1=0.406 (29s)
+wavlm_base_plus__none_0__seed1__hold-SAVEE: val=0.581 test_f1=0.364 (38s)
+wavlm_base_plus__none_0__seed2__hold-SAVEE: val=0.533 test_f1=0.317 (28s)
+wavlm_base_plus__aux_0.1__seed0__hold-SAVEE: val=0.538 test_f1=0.340 (47s)
+wavlm_base_plus__aux_0.1__seed1__hold-SAVEE: val=0.588 test_f1=0.342 (41s)
+wavlm_base_plus__aux_0.1__seed2__hold-SAVEE: val=0.553 test_f1=0.305 (34s)
+wavlm_base_plus__grl_0.05__seed0__hold-SAVEE: val=0.563 test_f1=0.325 (38s)
+wavlm_base_plus__grl_0.05__seed1__hold-SAVEE: val=0.577 test_f1=0.355 (30s)
+wavlm_base_plus__grl_0.05__seed2__hold-SAVEE: val=0.600 test_f1=0.252 (34s)
+wavlm_base_plus__none_0__seed0__hold-TESS: val=0.718 test_f1=0.398 (28s)
+wavlm_base_plus__none_0__seed1__hold-TESS: val=0.719 test_f1=0.401 (50s)
+wavlm_base_plus__none_0__seed2__hold-TESS: val=0.712 test_f1=0.404 (33s)
+wavlm_base_plus__aux_0.1__seed0__hold-TESS: val=0.713 test_f1=0.351 (42s)
+wavlm_base_plus__aux_0.1__seed1__hold-TESS: val=0.699 test_f1=0.297 (22s)
+wavlm_base_plus__aux_0.1__seed2__hold-TESS: val=0.724 test_f1=0.317 (47s)
+wavlm_base_plus__grl_0.05__seed0__hold-TESS: val=0.686 test_f1=0.208 (17s)
+wavlm_base_plus__grl_0.05__seed1__hold-TESS: val=0.675 test_f1=0.395 (20s)
+wavlm_base_plus__grl_0.05__seed2__hold-TESS: val=0.713 test_f1=0.350 (53s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__none_0__seed0__hold-UA-SER: val=0.518 test_f1=0.290 (55s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__none_0__seed1__hold-UA-SER: val=0.529 test_f1=0.309 (32s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__none_0__seed2__hold-UA-SER: val=0.513 test_f1=0.301 (39s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__aux_0.1__seed0__hold-UA-SER: val=0.508 test_f1=0.267 (37s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__aux_0.1__seed1__hold-UA-SER: val=0.522 test_f1=0.212 (35s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__aux_0.1__seed2__hold-UA-SER: val=0.518 test_f1=0.241 (33s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__grl_0.05__seed0__hold-UA-SER: val=0.495 test_f1=0.207 (27s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__grl_0.05__seed1__hold-UA-SER: val=0.520 test_f1=0.252 (29s)
+.venv\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+wavlm_base_plus__grl_0.05__seed2__hold-UA-SER: val=0.542 test_f1=0.331 (45s)

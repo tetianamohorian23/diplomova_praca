@@ -1,0 +1,92 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+.venv-gpu\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\<user>\.cache\huggingface\hub\models--facebook--wav2vec2-xls-r-300m. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+.venv-gpu\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\<user>\.cache\huggingface\hub. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+
+Loading weights:   0%|          | 0/422 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 422/422 [00:00<00:00, 10405.93it/s]
+[transformers] [1mWav2Vec2Model LOAD REPORT[0m from: facebook/wav2vec2-xls-r-300m
+Key                          | Status     |  | 
+-----------------------------+------------+--+-
+quantizer.codevectors        | UNEXPECTED |  | 
+project_hid.bias             | UNEXPECTED |  | 
+quantizer.weight_proj.bias   | UNEXPECTED |  | 
+project_q.weight             | UNEXPECTED |  | 
+project_hid.weight           | UNEXPECTED |  | 
+project_q.bias               | UNEXPECTED |  | 
+quantizer.weight_proj.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+0/13406 elapsed=0.0m ETA=122.3m
+200/13406 elapsed=0.2m ETA=16.0m
+400/13406 elapsed=0.5m ETA=14.7m
+600/13406 elapsed=0.7m ETA=14.1m
+800/13406 elapsed=0.9m ETA=13.8m
+1000/13406 elapsed=1.1m ETA=13.4m
+1200/13406 elapsed=1.3m ETA=13.0m
+1400/13406 elapsed=1.5m ETA=12.7m
+1600/13406 elapsed=1.7m ETA=12.5m
+1800/13406 elapsed=1.9m ETA=12.2m
+2000/13406 elapsed=2.1m ETA=11.9m
+2200/13406 elapsed=2.3m ETA=11.7m
+2400/13406 elapsed=2.5m ETA=11.5m
+2600/13406 elapsed=2.7m ETA=11.3m
+2800/13406 elapsed=2.9m ETA=10.8m
+3000/13406 elapsed=3.0m ETA=10.3m
+3200/13406 elapsed=3.1m ETA=9.9m
+3400/13406 elapsed=3.2m ETA=9.5m
+3600/13406 elapsed=3.3m ETA=9.1m
+3800/13406 elapsed=3.4m ETA=8.7m
+4000/13406 elapsed=3.7m ETA=8.6m
+4200/13406 elapsed=3.9m ETA=8.5m
+4400/13406 elapsed=4.1m ETA=8.4m
+4600/13406 elapsed=4.3m ETA=8.2m
+4800/13406 elapsed=4.5m ETA=8.1m
+5000/13406 elapsed=4.7m ETA=7.9m
+5200/13406 elapsed=4.9m ETA=7.8m
+5400/13406 elapsed=5.1m ETA=7.6m
+5600/13406 elapsed=5.3m ETA=7.4m
+5800/13406 elapsed=5.5m ETA=7.3m
+6000/13406 elapsed=5.8m ETA=7.1m
+6200/13406 elapsed=6.0m ETA=6.9m
+6400/13406 elapsed=6.2m ETA=6.8m
+6600/13406 elapsed=6.4m ETA=6.6m
+6800/13406 elapsed=6.6m ETA=6.4m
+7000/13406 elapsed=6.8m ETA=6.2m
+7200/13406 elapsed=7.0m ETA=6.0m
+7400/13406 elapsed=7.2m ETA=5.9m
+7600/13406 elapsed=7.6m ETA=5.8m
+7800/13406 elapsed=7.9m ETA=5.7m
+8000/13406 elapsed=8.2m ETA=5.5m
+8200/13406 elapsed=8.4m ETA=5.3m
+8400/13406 elapsed=8.6m ETA=5.1m
+8600/13406 elapsed=8.8m ETA=4.9m
+8800/13406 elapsed=9.0m ETA=4.7m
+9000/13406 elapsed=9.3m ETA=4.5m
+9200/13406 elapsed=9.5m ETA=4.3m
+9400/13406 elapsed=9.7m ETA=4.1m
+9600/13406 elapsed=10.0m ETA=3.9m
+9800/13406 elapsed=10.2m ETA=3.8m
+10000/13406 elapsed=10.4m ETA=3.5m
+10200/13406 elapsed=10.6m ETA=3.3m
+10400/13406 elapsed=10.7m ETA=3.1m
+10600/13406 elapsed=10.9m ETA=2.9m
+10800/13406 elapsed=11.0m ETA=2.7m
+11000/13406 elapsed=11.2m ETA=2.4m
+11200/13406 elapsed=11.3m ETA=2.2m
+11400/13406 elapsed=11.5m ETA=2.0m
+11600/13406 elapsed=11.6m ETA=1.8m
+11800/13406 elapsed=11.7m ETA=1.6m
+12000/13406 elapsed=11.9m ETA=1.4m
+12200/13406 elapsed=12.0m ETA=1.2m
+12400/13406 elapsed=12.2m ETA=1.0m
+12600/13406 elapsed=12.3m ETA=0.8m
+12800/13406 elapsed=12.4m ETA=0.6m
+13000/13406 elapsed=12.6m ETA=0.4m
+13200/13406 elapsed=12.7m ETA=0.2m
+13400/13406 elapsed=12.9m ETA=0.0m
+done 775.3682168000087

@@ -1,0 +1,7 @@
+train_frozen_heads.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  y = torch.from_numpy(data["label_id"].to_numpy())
+wavlm_large__none_0__seed0: val=0.611 test_f1=0.706 (178s)
+wavlm_large__none_0__seed1: val=0.580 test_f1=0.689 (95s)
+wavlm_large__none_0__seed2: val=0.603 test_f1=0.658 (255s)
+wavlm_large__none_0__seed3: val=0.592 test_f1=0.678 (104s)
+wavlm_large__none_0__seed4: val=0.588 test_f1=0.710 (86s)

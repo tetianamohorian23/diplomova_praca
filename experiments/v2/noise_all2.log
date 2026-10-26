@@ -1,0 +1,13 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 36524.72it/s]
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 27212.94it/s]
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 31585.92it/s]
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 44386.06it/s]
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 32721.61it/s]
+reverb_0.8 {'frozen, clean training': 0.266, 'frozen, noise-augmented': 0.302, 'fine-tuned, clean training': 0.353, 'fine-tuned, noise-augmented': 0.395}
+telephone {'frozen, clean training': 0.424, 'frozen, noise-augmented': 0.529, 'fine-tuned, clean training': 0.551, 'fine-tuned, noise-augmented': 0.537}
+lowpass {'frozen, clean training': 0.61, 'frozen, noise-augmented': 0.733, 'fine-tuned, clean training': 0.697, 'fine-tuned, noise-augmented': 0.671}
+brown_10 {'frozen, clean training': 0.674, 'frozen, noise-augmented': 0.745, 'fine-tuned, clean training': 0.726, 'fine-tuned, noise-augmented': 0.7}
+hum_10 {'frozen, clean training': 0.623, 'frozen, noise-augmented': 0.675, 'fine-tuned, clean training': 0.705, 'fine-tuned, noise-augmented': 0.669}
+clip {'frozen, clean training': 0.705, 'frozen, noise-augmented': 0.768, 'fine-tuned, clean training': 0.75, 'fine-tuned, noise-augmented': 0.712}
+saved results for 16 conditions

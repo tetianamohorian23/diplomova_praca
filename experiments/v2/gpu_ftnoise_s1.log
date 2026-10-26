@@ -1,0 +1,149 @@
+ftnoise__none_0__seed1__noise: device=cuda train=6705 val=3190 test=3511
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 16903.17it/s]
+epoch 1 50/839 loss=2.083 elapsed=1m
+epoch 1 100/839 loss=2.087 elapsed=1m
+epoch 1 150/839 loss=2.093 elapsed=1m
+epoch 1 200/839 loss=2.094 elapsed=1m
+epoch 1 250/839 loss=2.092 elapsed=1m
+epoch 1 300/839 loss=2.089 elapsed=1m
+epoch 1 350/839 loss=2.078 elapsed=2m
+epoch 1 400/839 loss=2.062 elapsed=2m
+epoch 1 450/839 loss=2.051 elapsed=2m
+epoch 1 500/839 loss=2.040 elapsed=2m
+epoch 1 550/839 loss=2.027 elapsed=2m
+epoch 1 600/839 loss=2.014 elapsed=2m
+epoch 1 650/839 loss=1.996 elapsed=3m
+epoch 1 700/839 loss=1.983 elapsed=3m
+epoch 1 750/839 loss=1.970 elapsed=3m
+epoch 1 800/839 loss=1.956 elapsed=3m
+epoch 1 839/839 loss=1.943 elapsed=3m
+epoch 1: val_macro_f1=0.3316 val_acc=0.3618
+epoch 2 50/839 loss=1.643 elapsed=4m
+epoch 2 100/839 loss=1.611 elapsed=5m
+epoch 2 150/839 loss=1.626 elapsed=5m
+epoch 2 200/839 loss=1.610 elapsed=5m
+epoch 2 250/839 loss=1.588 elapsed=5m
+epoch 2 300/839 loss=1.564 elapsed=5m
+epoch 2 350/839 loss=1.562 elapsed=5m
+epoch 2 400/839 loss=1.547 elapsed=6m
+epoch 2 450/839 loss=1.545 elapsed=6m
+epoch 2 500/839 loss=1.536 elapsed=6m
+epoch 2 550/839 loss=1.523 elapsed=6m
+epoch 2 600/839 loss=1.517 elapsed=6m
+epoch 2 650/839 loss=1.507 elapsed=6m
+epoch 2 700/839 loss=1.497 elapsed=7m
+epoch 2 750/839 loss=1.491 elapsed=7m
+epoch 2 800/839 loss=1.482 elapsed=7m
+epoch 2 839/839 loss=1.477 elapsed=7m
+epoch 2: val_macro_f1=0.4958 val_acc=0.5279
+epoch 3 50/839 loss=1.390 elapsed=8m
+epoch 3 100/839 loss=1.343 elapsed=8m
+epoch 3 150/839 loss=1.334 elapsed=8m
+epoch 3 200/839 loss=1.329 elapsed=8m
+epoch 3 250/839 loss=1.333 elapsed=8m
+epoch 3 300/839 loss=1.326 elapsed=8m
+epoch 3 350/839 loss=1.314 elapsed=9m
+epoch 3 400/839 loss=1.314 elapsed=9m
+epoch 3 450/839 loss=1.311 elapsed=9m
+epoch 3 500/839 loss=1.306 elapsed=9m
+epoch 3 550/839 loss=1.301 elapsed=9m
+epoch 3 600/839 loss=1.298 elapsed=9m
+epoch 3 650/839 loss=1.300 elapsed=10m
+epoch 3 700/839 loss=1.298 elapsed=10m
+epoch 3 750/839 loss=1.299 elapsed=10m
+epoch 3 800/839 loss=1.293 elapsed=10m
+epoch 3 839/839 loss=1.289 elapsed=10m
+epoch 3: val_macro_f1=0.5281 val_acc=0.5467
+epoch 4 50/839 loss=1.213 elapsed=11m
+epoch 4 100/839 loss=1.194 elapsed=11m
+epoch 4 150/839 loss=1.217 elapsed=11m
+epoch 4 200/839 loss=1.227 elapsed=11m
+epoch 4 250/839 loss=1.215 elapsed=11m
+epoch 4 300/839 loss=1.207 elapsed=11m
+epoch 4 350/839 loss=1.208 elapsed=12m
+epoch 4 400/839 loss=1.203 elapsed=12m
+epoch 4 450/839 loss=1.200 elapsed=12m
+epoch 4 500/839 loss=1.195 elapsed=12m
+epoch 4 550/839 loss=1.190 elapsed=12m
+epoch 4 600/839 loss=1.184 elapsed=12m
+epoch 4 650/839 loss=1.186 elapsed=12m
+epoch 4 700/839 loss=1.184 elapsed=13m
+epoch 4 750/839 loss=1.185 elapsed=13m
+epoch 4 800/839 loss=1.189 elapsed=13m
+epoch 4 839/839 loss=1.189 elapsed=13m
+epoch 4: val_macro_f1=0.5559 val_acc=0.5743
+epoch 5 50/839 loss=1.020 elapsed=14m
+epoch 5 100/839 loss=1.068 elapsed=14m
+epoch 5 150/839 loss=1.077 elapsed=14m
+epoch 5 200/839 loss=1.073 elapsed=14m
+epoch 5 250/839 loss=1.076 elapsed=14m
+epoch 5 300/839 loss=1.101 elapsed=14m
+epoch 5 350/839 loss=1.095 elapsed=14m
+epoch 5 400/839 loss=1.098 elapsed=15m
+epoch 5 450/839 loss=1.102 elapsed=15m
+epoch 5 500/839 loss=1.106 elapsed=15m
+epoch 5 550/839 loss=1.108 elapsed=15m
+epoch 5 600/839 loss=1.109 elapsed=15m
+epoch 5 650/839 loss=1.111 elapsed=15m
+epoch 5 700/839 loss=1.106 elapsed=15m
+epoch 5 750/839 loss=1.108 elapsed=16m
+epoch 5 800/839 loss=1.110 elapsed=16m
+epoch 5 839/839 loss=1.113 elapsed=16m
+epoch 5: val_macro_f1=0.5949 val_acc=0.6188
+epoch 6 50/839 loss=1.070 elapsed=16m
+epoch 6 100/839 loss=1.105 elapsed=16m
+epoch 6 150/839 loss=1.095 elapsed=17m
+epoch 6 200/839 loss=1.067 elapsed=17m
+epoch 6 250/839 loss=1.045 elapsed=17m
+epoch 6 300/839 loss=1.057 elapsed=17m
+epoch 6 350/839 loss=1.053 elapsed=17m
+epoch 6 400/839 loss=1.059 elapsed=17m
+epoch 6 450/839 loss=1.055 elapsed=18m
+epoch 6 500/839 loss=1.061 elapsed=18m
+epoch 6 550/839 loss=1.059 elapsed=18m
+epoch 6 600/839 loss=1.057 elapsed=18m
+epoch 6 650/839 loss=1.061 elapsed=18m
+epoch 6 700/839 loss=1.061 elapsed=18m
+epoch 6 750/839 loss=1.060 elapsed=18m
+epoch 6 800/839 loss=1.060 elapsed=19m
+epoch 6 839/839 loss=1.057 elapsed=19m
+epoch 6: val_macro_f1=0.5695 val_acc=0.5978
+epoch 7 50/839 loss=0.998 elapsed=19m
+epoch 7 100/839 loss=0.997 elapsed=19m
+epoch 7 150/839 loss=1.026 elapsed=19m
+epoch 7 200/839 loss=1.043 elapsed=20m
+epoch 7 250/839 loss=1.038 elapsed=20m
+epoch 7 300/839 loss=1.039 elapsed=20m
+epoch 7 350/839 loss=1.033 elapsed=20m
+epoch 7 400/839 loss=1.031 elapsed=20m
+epoch 7 450/839 loss=1.036 elapsed=20m
+epoch 7 500/839 loss=1.032 elapsed=21m
+epoch 7 550/839 loss=1.038 elapsed=21m
+epoch 7 600/839 loss=1.030 elapsed=21m
+epoch 7 650/839 loss=1.023 elapsed=21m
+epoch 7 700/839 loss=1.020 elapsed=21m
+epoch 7 750/839 loss=1.023 elapsed=21m
+epoch 7 800/839 loss=1.025 elapsed=21m
+epoch 7 839/839 loss=1.026 elapsed=21m
+epoch 7: val_macro_f1=0.5698 val_acc=0.5978
+epoch 8 50/839 loss=1.017 elapsed=22m
+epoch 8 100/839 loss=1.009 elapsed=22m
+epoch 8 150/839 loss=0.988 elapsed=22m
+epoch 8 200/839 loss=1.002 elapsed=22m
+epoch 8 250/839 loss=0.998 elapsed=23m
+epoch 8 300/839 loss=0.997 elapsed=23m
+epoch 8 350/839 loss=1.000 elapsed=23m
+epoch 8 400/839 loss=1.001 elapsed=23m
+epoch 8 450/839 loss=0.997 elapsed=23m
+epoch 8 500/839 loss=0.999 elapsed=23m
+epoch 8 550/839 loss=0.999 elapsed=23m
+epoch 8 600/839 loss=1.002 elapsed=24m
+epoch 8 650/839 loss=1.009 elapsed=24m
+epoch 8 700/839 loss=1.011 elapsed=24m
+epoch 8 750/839 loss=1.013 elapsed=24m
+epoch 8 800/839 loss=1.012 elapsed=24m
+epoch 8 839/839 loss=1.011 elapsed=24m
+epoch 8: val_macro_f1=0.5668 val_acc=0.5947
+early stopping
+DONE ftnoise__none_0__seed1__noise: test_macro_f1=0.7345 acc=0.7345, peak VRAM 2.8 GB

@@ -1,0 +1,144 @@
+loco__none_0__seed2__hold-UA-SER: device=cuda train=6072 val=3052 test=952
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 248/248 [00:00<00:00, 10254.31it/s]
+epoch 1 50/759 loss=2.067 elapsed=1m
+epoch 1 100/759 loss=2.067 elapsed=1m
+epoch 1 150/759 loss=2.066 elapsed=1m
+epoch 1 200/759 loss=2.060 elapsed=1m
+epoch 1 250/759 loss=2.051 elapsed=1m
+epoch 1 300/759 loss=2.034 elapsed=2m
+epoch 1 350/759 loss=2.012 elapsed=2m
+epoch 1 400/759 loss=2.005 elapsed=2m
+epoch 1 450/759 loss=1.991 elapsed=2m
+epoch 1 500/759 loss=1.975 elapsed=2m
+epoch 1 550/759 loss=1.963 elapsed=3m
+epoch 1 600/759 loss=1.944 elapsed=3m
+epoch 1 650/759 loss=1.928 elapsed=3m
+epoch 1 700/759 loss=1.905 elapsed=3m
+epoch 1 750/759 loss=1.883 elapsed=3m
+epoch 1 759/759 loss=1.879 elapsed=4m
+epoch 1: val_macro_f1=0.3714 val_acc=0.4106
+epoch 2 50/759 loss=1.636 elapsed=5m
+epoch 2 100/759 loss=1.542 elapsed=5m
+epoch 2 150/759 loss=1.531 elapsed=5m
+epoch 2 200/759 loss=1.524 elapsed=5m
+epoch 2 250/759 loss=1.497 elapsed=5m
+epoch 2 300/759 loss=1.489 elapsed=6m
+epoch 2 350/759 loss=1.478 elapsed=6m
+epoch 2 400/759 loss=1.466 elapsed=6m
+epoch 2 450/759 loss=1.445 elapsed=6m
+epoch 2 500/759 loss=1.436 elapsed=6m
+epoch 2 550/759 loss=1.428 elapsed=7m
+epoch 2 600/759 loss=1.418 elapsed=7m
+epoch 2 650/759 loss=1.405 elapsed=7m
+epoch 2 700/759 loss=1.396 elapsed=7m
+epoch 2 750/759 loss=1.383 elapsed=7m
+epoch 2 759/759 loss=1.381 elapsed=7m
+epoch 2: val_macro_f1=0.4395 val_acc=0.4604
+epoch 3 50/759 loss=1.262 elapsed=8m
+epoch 3 100/759 loss=1.265 elapsed=8m
+epoch 3 150/759 loss=1.250 elapsed=8m
+epoch 3 200/759 loss=1.239 elapsed=9m
+epoch 3 250/759 loss=1.213 elapsed=9m
+epoch 3 300/759 loss=1.207 elapsed=9m
+epoch 3 350/759 loss=1.196 elapsed=9m
+epoch 3 400/759 loss=1.189 elapsed=9m
+epoch 3 450/759 loss=1.197 elapsed=10m
+epoch 3 500/759 loss=1.191 elapsed=10m
+epoch 3 550/759 loss=1.183 elapsed=10m
+epoch 3 600/759 loss=1.194 elapsed=10m
+epoch 3 650/759 loss=1.182 elapsed=10m
+epoch 3 700/759 loss=1.180 elapsed=11m
+epoch 3 750/759 loss=1.177 elapsed=11m
+epoch 3 759/759 loss=1.176 elapsed=11m
+epoch 3: val_macro_f1=0.5651 val_acc=0.5875
+epoch 4 50/759 loss=1.010 elapsed=11m
+epoch 4 100/759 loss=1.085 elapsed=12m
+epoch 4 150/759 loss=1.078 elapsed=12m
+epoch 4 200/759 loss=1.077 elapsed=12m
+epoch 4 250/759 loss=1.071 elapsed=12m
+epoch 4 300/759 loss=1.070 elapsed=12m
+epoch 4 350/759 loss=1.066 elapsed=12m
+epoch 4 400/759 loss=1.070 elapsed=13m
+epoch 4 450/759 loss=1.066 elapsed=13m
+epoch 4 500/759 loss=1.072 elapsed=13m
+epoch 4 550/759 loss=1.072 elapsed=13m
+epoch 4 600/759 loss=1.065 elapsed=13m
+epoch 4 650/759 loss=1.068 elapsed=14m
+epoch 4 700/759 loss=1.070 elapsed=14m
+epoch 4 750/759 loss=1.069 elapsed=14m
+epoch 4 759/759 loss=1.068 elapsed=14m
+epoch 4: val_macro_f1=0.5621 val_acc=0.6039
+epoch 5 50/759 loss=1.007 elapsed=15m
+epoch 5 100/759 loss=1.015 elapsed=15m
+epoch 5 150/759 loss=1.007 elapsed=15m
+epoch 5 200/759 loss=1.015 elapsed=15m
+epoch 5 250/759 loss=1.014 elapsed=15m
+epoch 5 300/759 loss=1.016 elapsed=16m
+epoch 5 350/759 loss=1.011 elapsed=16m
+epoch 5 400/759 loss=1.006 elapsed=16m
+epoch 5 450/759 loss=0.999 elapsed=16m
+epoch 5 500/759 loss=0.994 elapsed=16m
+epoch 5 550/759 loss=0.996 elapsed=17m
+epoch 5 600/759 loss=1.002 elapsed=17m
+epoch 5 650/759 loss=1.002 elapsed=17m
+epoch 5 700/759 loss=1.000 elapsed=17m
+epoch 5 750/759 loss=0.997 elapsed=17m
+epoch 5 759/759 loss=0.995 elapsed=17m
+epoch 5: val_macro_f1=0.5973 val_acc=0.6245
+epoch 6 50/759 loss=0.886 elapsed=18m
+epoch 6 100/759 loss=0.939 elapsed=18m
+epoch 6 150/759 loss=0.936 elapsed=18m
+epoch 6 200/759 loss=0.939 elapsed=19m
+epoch 6 250/759 loss=0.946 elapsed=19m
+epoch 6 300/759 loss=0.954 elapsed=19m
+epoch 6 350/759 loss=0.951 elapsed=19m
+epoch 6 400/759 loss=0.954 elapsed=19m
+epoch 6 450/759 loss=0.944 elapsed=20m
+epoch 6 500/759 loss=0.950 elapsed=20m
+epoch 6 550/759 loss=0.946 elapsed=20m
+epoch 6 600/759 loss=0.946 elapsed=20m
+epoch 6 650/759 loss=0.947 elapsed=20m
+epoch 6 700/759 loss=0.946 elapsed=20m
+epoch 6 750/759 loss=0.946 elapsed=21m
+epoch 6 759/759 loss=0.944 elapsed=21m
+epoch 6: val_macro_f1=0.6187 val_acc=0.6471
+epoch 7 50/759 loss=0.873 elapsed=21m
+epoch 7 100/759 loss=0.912 elapsed=22m
+epoch 7 150/759 loss=0.910 elapsed=22m
+epoch 7 200/759 loss=0.899 elapsed=22m
+epoch 7 250/759 loss=0.895 elapsed=22m
+epoch 7 300/759 loss=0.899 elapsed=22m
+epoch 7 350/759 loss=0.896 elapsed=23m
+epoch 7 400/759 loss=0.904 elapsed=23m
+epoch 7 450/759 loss=0.901 elapsed=23m
+epoch 7 500/759 loss=0.907 elapsed=23m
+epoch 7 550/759 loss=0.916 elapsed=23m
+epoch 7 600/759 loss=0.914 elapsed=23m
+epoch 7 650/759 loss=0.907 elapsed=24m
+epoch 7 700/759 loss=0.903 elapsed=24m
+epoch 7 750/759 loss=0.905 elapsed=24m
+epoch 7 759/759 loss=0.906 elapsed=24m
+epoch 7: val_macro_f1=0.6039 val_acc=0.6258
+epoch 8 50/759 loss=0.880 elapsed=25m
+epoch 8 100/759 loss=0.871 elapsed=25m
+epoch 8 150/759 loss=0.899 elapsed=25m
+epoch 8 200/759 loss=0.893 elapsed=25m
+epoch 8 250/759 loss=0.901 elapsed=25m
+epoch 8 300/759 loss=0.898 elapsed=26m
+epoch 8 350/759 loss=0.892 elapsed=26m
+epoch 8 400/759 loss=0.893 elapsed=26m
+epoch 8 450/759 loss=0.887 elapsed=26m
+epoch 8 500/759 loss=0.893 elapsed=26m
+epoch 8 550/759 loss=0.890 elapsed=27m
+epoch 8 600/759 loss=0.892 elapsed=27m
+epoch 8 650/759 loss=0.888 elapsed=27m
+epoch 8 700/759 loss=0.884 elapsed=27m
+epoch 8 750/759 loss=0.883 elapsed=27m
+epoch 8 759/759 loss=0.881 elapsed=27m
+epoch 8: val_macro_f1=0.5916 val_acc=0.6160
+.venv-gpu\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+DONE loco__none_0__seed2__hold-UA-SER: test_macro_f1=0.2766 acc=0.2237, peak VRAM 2.8 GB

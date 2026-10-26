@@ -1,0 +1,132 @@
+loco__none_0__seed0__hold-RAVDESS: device=cuda train=5925 val=2982 test=1248
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 37016.03it/s]
+epoch 1 50/741 loss=2.772 elapsed=0m
+epoch 1 100/741 loss=2.763 elapsed=1m
+epoch 1 150/741 loss=2.733 elapsed=1m
+epoch 1 200/741 loss=2.701 elapsed=1m
+epoch 1 250/741 loss=2.675 elapsed=1m
+epoch 1 300/741 loss=2.653 elapsed=1m
+epoch 1 350/741 loss=2.627 elapsed=1m
+epoch 1 400/741 loss=2.602 elapsed=1m
+epoch 1 450/741 loss=2.582 elapsed=2m
+epoch 1 500/741 loss=2.565 elapsed=2m
+epoch 1 550/741 loss=2.549 elapsed=2m
+epoch 1 600/741 loss=2.532 elapsed=2m
+epoch 1 650/741 loss=2.518 elapsed=2m
+epoch 1 700/741 loss=2.500 elapsed=2m
+epoch 1 741/741 loss=2.488 elapsed=2m
+epoch 1: val_macro_f1=0.1044 val_acc=0.1311
+epoch 2 50/741 loss=2.183 elapsed=3m
+epoch 2 100/741 loss=2.207 elapsed=3m
+epoch 2 150/741 loss=2.189 elapsed=3m
+epoch 2 200/741 loss=2.173 elapsed=3m
+epoch 2 250/741 loss=2.172 elapsed=4m
+epoch 2 300/741 loss=2.163 elapsed=4m
+epoch 2 350/741 loss=2.155 elapsed=4m
+epoch 2 400/741 loss=2.146 elapsed=4m
+epoch 2 450/741 loss=2.124 elapsed=4m
+epoch 2 500/741 loss=2.113 elapsed=4m
+epoch 2 550/741 loss=2.097 elapsed=4m
+epoch 2 600/741 loss=2.084 elapsed=5m
+epoch 2 650/741 loss=2.084 elapsed=5m
+epoch 2 700/741 loss=2.080 elapsed=5m
+epoch 2 741/741 loss=2.074 elapsed=5m
+epoch 2: val_macro_f1=0.3939 val_acc=0.3967
+epoch 3 50/741 loss=1.873 elapsed=5m
+epoch 3 100/741 loss=1.905 elapsed=5m
+epoch 3 150/741 loss=1.896 elapsed=6m
+epoch 3 200/741 loss=1.883 elapsed=6m
+epoch 3 250/741 loss=1.870 elapsed=6m
+epoch 3 300/741 loss=1.876 elapsed=6m
+epoch 3 350/741 loss=1.871 elapsed=6m
+epoch 3 400/741 loss=1.869 elapsed=6m
+epoch 3 450/741 loss=1.875 elapsed=6m
+epoch 3 500/741 loss=1.865 elapsed=7m
+epoch 3 550/741 loss=1.863 elapsed=7m
+epoch 3 600/741 loss=1.859 elapsed=7m
+epoch 3 650/741 loss=1.858 elapsed=7m
+epoch 3 700/741 loss=1.859 elapsed=7m
+epoch 3 741/741 loss=1.853 elapsed=7m
+epoch 3: val_macro_f1=0.4343 val_acc=0.4641
+epoch 4 50/741 loss=1.776 elapsed=8m
+epoch 4 100/741 loss=1.739 elapsed=8m
+epoch 4 150/741 loss=1.748 elapsed=8m
+epoch 4 200/741 loss=1.740 elapsed=8m
+epoch 4 250/741 loss=1.741 elapsed=8m
+epoch 4 300/741 loss=1.731 elapsed=8m
+epoch 4 350/741 loss=1.731 elapsed=8m
+epoch 4 400/741 loss=1.737 elapsed=9m
+epoch 4 450/741 loss=1.744 elapsed=9m
+epoch 4 500/741 loss=1.739 elapsed=9m
+epoch 4 550/741 loss=1.742 elapsed=9m
+epoch 4 600/741 loss=1.742 elapsed=9m
+epoch 4 650/741 loss=1.748 elapsed=9m
+epoch 4 700/741 loss=1.751 elapsed=9m
+epoch 4 741/741 loss=1.752 elapsed=10m
+epoch 4: val_macro_f1=0.4917 val_acc=0.5151
+epoch 5 50/741 loss=1.714 elapsed=10m
+epoch 5 100/741 loss=1.663 elapsed=10m
+epoch 5 150/741 loss=1.646 elapsed=10m
+epoch 5 200/741 loss=1.661 elapsed=10m
+epoch 5 250/741 loss=1.676 elapsed=11m
+epoch 5 300/741 loss=1.675 elapsed=11m
+epoch 5 350/741 loss=1.668 elapsed=11m
+epoch 5 400/741 loss=1.669 elapsed=11m
+epoch 5 450/741 loss=1.662 elapsed=11m
+epoch 5 500/741 loss=1.661 elapsed=11m
+epoch 5 550/741 loss=1.665 elapsed=11m
+epoch 5 600/741 loss=1.661 elapsed=12m
+epoch 5 650/741 loss=1.666 elapsed=12m
+epoch 5 700/741 loss=1.664 elapsed=12m
+epoch 5 741/741 loss=1.663 elapsed=12m
+epoch 5: val_macro_f1=0.4982 val_acc=0.5205
+epoch 6 50/741 loss=1.598 elapsed=12m
+epoch 6 100/741 loss=1.601 elapsed=12m
+epoch 6 150/741 loss=1.608 elapsed=13m
+epoch 6 200/741 loss=1.617 elapsed=13m
+epoch 6 250/741 loss=1.617 elapsed=13m
+epoch 6 300/741 loss=1.620 elapsed=13m
+epoch 6 350/741 loss=1.616 elapsed=13m
+epoch 6 400/741 loss=1.597 elapsed=13m
+epoch 6 450/741 loss=1.601 elapsed=13m
+epoch 6 500/741 loss=1.607 elapsed=14m
+epoch 6 550/741 loss=1.602 elapsed=14m
+epoch 6 600/741 loss=1.612 elapsed=14m
+epoch 6 650/741 loss=1.619 elapsed=14m
+epoch 6 700/741 loss=1.623 elapsed=14m
+epoch 6 741/741 loss=1.621 elapsed=14m
+epoch 6: val_macro_f1=0.4964 val_acc=0.5248
+epoch 7 50/741 loss=1.542 elapsed=15m
+epoch 7 100/741 loss=1.580 elapsed=15m
+epoch 7 150/741 loss=1.582 elapsed=15m
+epoch 7 200/741 loss=1.597 elapsed=15m
+epoch 7 250/741 loss=1.587 elapsed=15m
+epoch 7 300/741 loss=1.591 elapsed=15m
+epoch 7 350/741 loss=1.576 elapsed=15m
+epoch 7 400/741 loss=1.580 elapsed=16m
+epoch 7 450/741 loss=1.579 elapsed=16m
+epoch 7 500/741 loss=1.578 elapsed=16m
+epoch 7 550/741 loss=1.580 elapsed=16m
+epoch 7 600/741 loss=1.572 elapsed=16m
+epoch 7 650/741 loss=1.573 elapsed=16m
+epoch 7 700/741 loss=1.570 elapsed=16m
+epoch 7 741/741 loss=1.568 elapsed=17m
+epoch 7: val_macro_f1=0.5185 val_acc=0.5419
+epoch 8 50/741 loss=1.612 elapsed=17m
+epoch 8 100/741 loss=1.592 elapsed=17m
+epoch 8 150/741 loss=1.571 elapsed=17m
+epoch 8 200/741 loss=1.560 elapsed=17m
+epoch 8 250/741 loss=1.555 elapsed=17m
+epoch 8 300/741 loss=1.563 elapsed=18m
+epoch 8 350/741 loss=1.561 elapsed=18m
+epoch 8 400/741 loss=1.572 elapsed=18m
+epoch 8 450/741 loss=1.566 elapsed=18m
+epoch 8 500/741 loss=1.557 elapsed=18m
+epoch 8 550/741 loss=1.555 elapsed=18m
+epoch 8 600/741 loss=1.552 elapsed=18m
+epoch 8 650/741 loss=1.553 elapsed=19m
+epoch 8 700/741 loss=1.553 elapsed=19m
+epoch 8 741/741 loss=1.552 elapsed=19m
+epoch 8: val_macro_f1=0.5094 val_acc=0.5349
+DONE loco__none_0__seed0__hold-RAVDESS: test_macro_f1=0.5720 acc=0.5801, peak VRAM 2.7 GB

@@ -1,0 +1,1 @@
+{"init": "scratch", "fraction": 0.1, "seed": 1, "n_labeled": 670, "best_epoch": 12, "val_macro_f1": 0.10171916507681858, "test_macro_f1": 0.1037998325485909, "test_acc": 0.14098547422386784}

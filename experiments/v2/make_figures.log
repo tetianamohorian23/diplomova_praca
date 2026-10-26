@@ -1,0 +1,36 @@
+saved 01_model_comparison.png
+saved 02_per_emotion_f1.png
+saved 03_confusion_matrices.png
+saved 04_corpus_task_ablation.png
+saved 05_cross_corpus.png
+saved 06_noise_robustness.png
+saved 07_calibration.png
+saved 08_selfsup_and_semisup.png
+saved 09_finetuning_curves.png
+saved 10_per_corpus.png
+saved 11_dataset_overview.png
+saved 12_layers.png
+saved 13_grouped_cv.png
+saved 14_tsne.png
+Traceback (most recent call last):
+  File "make_figures.py", line 396, in <module>
+    ax.bar(range(len(names)), v, yerr=e, color=[BLUE, ORANGE, AQUA, VIOLET][: len(names)], width=0.6, capsize=3)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ".venv\Lib\site-packages\matplotlib\__init__.py", line 1531, in inner
+    return func(
+        ax,
+        *map(cbook.sanitize_sequence, args),
+        **{k: cbook.sanitize_sequence(v) for k, v in kwargs.items()})
+  File ".venv\Lib\site-packages\matplotlib\axes\_axes.py", line 2603, in bar
+    r = mpatches.Rectangle(
+        xy=(l, b), width=w, height=h,
+    ...<4 lines>...
+        hatch=htch,
+        )
+  File ".venv\Lib\site-packages\matplotlib\patches.py", line 895, in __init__
+    self._convert_units()  # Validate the inputs.
+    ~~~~~~~~~~~~~~~~~~~^^
+  File ".venv\Lib\site-packages\matplotlib\patches.py", line 906, in _convert_units
+    y1 = self.convert_yunits(self._y0 + self._height)
+                             ~~~~~~~~~^~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'

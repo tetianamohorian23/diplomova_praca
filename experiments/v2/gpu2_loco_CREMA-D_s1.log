@@ -1,0 +1,33 @@
+loco__none_0__seed1__hold-CREMA-D: device=cuda train=1963 val=1960 test=7442
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 248/248 [00:00<00:00, 11031.20it/s]
+epoch 1 50/246 loss=1.976 elapsed=1m
+epoch 1 100/246 loss=1.969 elapsed=1m
+epoch 1 150/246 loss=1.955 elapsed=1m
+epoch 1 200/246 loss=1.922 elapsed=1m
+epoch 1 246/246 loss=1.876 elapsed=1m
+epoch 1: val_macro_f1=0.4297 val_acc=0.4673
+epoch 2 50/246 loss=1.584 elapsed=2m
+epoch 2 100/246 loss=1.522 elapsed=2m
+epoch 2 150/246 loss=1.473 elapsed=3m
+epoch 2 200/246 loss=1.450 elapsed=3m
+epoch 2 246/246 loss=1.439 elapsed=3m
+epoch 2: val_macro_f1=0.4002 val_acc=0.4383
+epoch 3 50/246 loss=1.196 elapsed=3m
+epoch 3 100/246 loss=1.225 elapsed=3m
+epoch 3 150/246 loss=1.216 elapsed=3m
+epoch 3 200/246 loss=1.208 elapsed=4m
+epoch 3 246/246 loss=1.197 elapsed=4m
+epoch 3: val_macro_f1=0.3532 val_acc=0.3923
+epoch 4 50/246 loss=1.075 elapsed=4m
+epoch 4 100/246 loss=1.015 elapsed=4m
+epoch 4 150/246 loss=1.014 elapsed=5m
+epoch 4 200/246 loss=0.990 elapsed=5m
+epoch 4 246/246 loss=0.987 elapsed=5m
+epoch 4: val_macro_f1=0.4258 val_acc=0.4791
+.venv-gpu\Lib\site-packages\sklearn\metrics\_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+early stopping
+DONE loco__none_0__seed1__hold-CREMA-D: test_macro_f1=0.2574 acc=0.2662, peak VRAM 2.8 GB

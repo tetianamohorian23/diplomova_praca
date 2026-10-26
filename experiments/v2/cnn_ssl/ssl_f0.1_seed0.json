@@ -1,0 +1,1 @@
+{"init": "ssl", "fraction": 0.1, "seed": 0, "n_labeled": 670, "best_epoch": 4, "val_macro_f1": 0.1837984957313592, "test_macro_f1": 0.18604905281976641, "test_acc": 0.21845628026203362}
