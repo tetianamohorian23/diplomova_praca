@@ -321,7 +321,7 @@ if sel:
         pred = P.argmax(1)
         ax.bar(np.arange(len(corp)) + k * w - 0.4 + w / 2, [mf1(y[ds == c], pred[ds == c]) for c in corp], w * 0.92, color=col, label=n)
     ax.set_xticks(range(len(corp)), [f"{c}\n(n={int((ds == c).sum())})" for c in corp]); ax.set_ylim(0, 1); ax.grid(axis="x", visible=False)
-    ax.set_ylabel("macro-F1"); ax.legend(ncol=2, loc="lower left", fontsize=8); ax.set_title("Test macro-F1 per corpus (seen corpora; TESS has no training speakers)")
+    ax.set_ylabel("macro-F1"); ax.legend(ncol=2, loc="upper center", bbox_to_anchor=(0.5, -0.2), frameon=False, fontsize=8); ax.set_title("Test macro-F1 per corpus (seen corpora; TESS has no training speakers)")
     save(fig, "10_per_corpus.png")
 
 # ================================================================== 11 dataset overview
