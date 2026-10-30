@@ -61,7 +61,7 @@ class Backbone(nn.Module):
         self.mel = torchaudio.transforms.MelSpectrogram(SR, n_fft=512, win_length=400, hop_length=160, n_mels=64)
         self.time_mask = torchaudio.transforms.TimeMasking(18)
         self.freq_mask = torchaudio.transforms.FrequencyMasking(8)
-        self.encoder = MelCNN(len(LABELS)).encoder
+        self.encoder = MelCNN(len(LABELS)).encoder  # 192-d after global pooling
 
     def forward(self, wave: torch.Tensor, augment: bool = False) -> torch.Tensor:
         s = torch.log(self.mel(wave).clamp_min(1e-5))
@@ -90,8 +90,8 @@ def batch_waves(waves, lens, idx, crop=None, augment=False):
             if np.random.rand() < 0.6:
                 snr = np.random.uniform(10, 35)
                 w = w + torch.randn_like(w) * (w.pow(2).mean().clamp_min(1e-8) / 10 ** (snr / 10)).sqrt()
-            if np.random.rand() < 0.3:
-                f = np.random.uniform(0.9, 1.1)
+            if np.random.rand() < 0.3:  # speed perturbation
+                f = np.random.uniform(0.9, 1.1)  # cheap speed change by linear interpolation
                 w = nn.functional.interpolate(w[None, None], scale_factor=1 / f, mode="linear")[0, 0]
                 w = w[: (crop or LEN)]
                 w = nn.functional.pad(w, (0, (crop or LEN) - len(w)))
@@ -164,7 +164,7 @@ def finetune(init: str, fraction: float, seed: int, epochs=20, patience=5, bs=32
     split = data.experiment_split.to_numpy()
     rng = np.random.default_rng(seed)
     train_idx = np.where(split == "train")[0]
-    if fraction < 1:
+    if fraction < 1:  # stratified label subsample
         keep = []
         for c in range(len(LABELS)):
             ids = train_idx[y[train_idx] == c]

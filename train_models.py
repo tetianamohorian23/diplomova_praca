@@ -541,9 +541,6 @@ def main() -> None:
     for label in models_labels():
         class_metrics = wav2vec_metrics["classification_report"][label]
         print(f"{label:<12} {class_metrics['f1-score']:>10.4f}")
-    from plot_experiments import main as generate_plots
-
-    generate_plots()
 
 
 def models_labels() -> list[str]:

@@ -36,9 +36,9 @@ from transformers import AutoModel
 
 ROOT = Path(__file__).resolve().parent
 MODELS = ROOT / "models"
-ROBUST = MODELS / "noise_robust"
+ROBUST = MODELS / "noise_robust"  # default: heads trained on clean + noisy (white/pink/babble) embeddings
 SR = 16_000
-WINDOW = SR * 4
+WINDOW = SR * 4  # training clips were cut to 4 s
 AUDIO_EXT = {".wav", ".flac", ".ogg", ".mp3", ".m4a", ".aiff", ".aif"}
 MIN_BATCH_WINDOWS = 30
 
@@ -58,10 +58,12 @@ class Head(torch.nn.Module):
 
 
 def load_audio(path: Path) -> np.ndarray:
+    if not Path(path).is_file():  # otherwise the torchaudio fallback below hides this behind a misleading TorchCodec error
+        raise FileNotFoundError(f"file not found: {path}")
     try:
         wave, sr = sf.read(path, dtype="float32", always_2d=True)
         wave = torch.from_numpy(wave.mean(1))
-    except Exception:
+    except Exception:  # mp3/m4a etc.
         w, sr = torchaudio.load(str(path))
         wave = w.mean(0)
     if sr != SR:
@@ -84,7 +86,7 @@ def record(seconds: float, out: Path | None = None) -> Path:
 def check_audio(wave: np.ndarray) -> None:
     if len(wave) < SR // 4:
         raise ValueError("audio shorter than 0.25 s")
-    if float(np.sqrt(np.mean(wave ** 2))) < 0.0003:
+    if float(np.sqrt(np.mean(wave ** 2))) < 0.0003:  # not a VAD: only refuses digital silence (quietest real clip in the data: 0.0006, mic silence: 0.0001)
         raise ValueError("audio is almost silent (no speech to analyse)")
 
 
@@ -104,7 +106,7 @@ LOW_SPEECH = 0.10
 def split_windows(wave: np.ndarray, size: int = WINDOW) -> list[tuple[int, np.ndarray]]:
     starts = list(range(0, max(len(wave), 1), size))
     chunks = [(s, wave[s : s + size]) for s in starts]
-    if len(chunks) > 1 and len(chunks[-1][1]) < SR:
+    if len(chunks) > 1 and len(chunks[-1][1]) < SR:  # drop a tiny tail
         chunks.pop()
     return chunks
 
@@ -126,7 +128,7 @@ class Predictor:
     def features(self, wave: np.ndarray) -> torch.Tensor:
         wave = (wave - wave.mean()) / (wave.std() + 1e-7)
         hs = torch.stack(self.encoder(torch.from_numpy(wave)[None].to(self.device), output_hidden_states=True).hidden_states, 0)[:, 0]
-        return torch.cat([hs.mean(1), hs.std(1)], 1).cpu()[None]
+        return torch.cat([hs.mean(1), hs.std(1)], 1).cpu()[None]  # (1, layers, 2*hidden)
 
     @torch.inference_mode()
     def probs_from_features(self, x: torch.Tensor) -> np.ndarray:
@@ -200,7 +202,7 @@ class FineTunedPredictor(Predictor):
         files = sorted(ckpt_dir.glob("*.pt"))
         if not files:
             sys.exit(f"No fine-tuned checkpoints in {ckpt_dir}. Run: python export_finetuned.py")
-        from train_wavlm_v2 import SSLClassifier
+        from train_wavlm_v2 import SSLClassifier  # lazy: heavy imports only when this mode is used
 
         self.device, self.models = device, []
         for f in files:

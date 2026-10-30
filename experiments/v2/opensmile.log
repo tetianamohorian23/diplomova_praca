@@ -1,6 +1,0 @@
-[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:  1.5min
-[Parallel(n_jobs=4)]: Done  40 out of  40 | elapsed:  6.1min finished
-logreg {'chosen': 'C=10', 'val_macro_f1': 0.34360901689974443, 'test_macro_f1': 0.451223758026629, 'test_accuracy': 0.462546283110225, 'per_class_f1': {'angry': 0.65, 'disgust': 0.383, 'fear': 0.367, 'happy': 0.337, 'neutral': 0.551, 'sad': 0.502, 'surprise': 0.369}}
-svm_rbf {'chosen': 'C=10', 'val_macro_f1': 0.34987052755123876, 'test_macro_f1': 0.43721471640017934, 'test_accuracy': 0.48162916547992024, 'per_class_f1': {'angry': 0.605, 'disgust': 0.446, 'fear': 0.395, 'happy': 0.49, 'neutral': 0.431, 'sad': 0.555, 'surprise': 0.138}}
-random_forest {'chosen': 'n=600', 'val_macro_f1': 0.4332985269024287, 'test_macro_f1': 0.4035086958449618, 'test_accuracy': 0.43520364568499004, 'per_class_f1': {'angry': 0.514, 'disgust': 0.5, 'fear': 0.263, 'happy': 0.423, 'neutral': 0.458, 'sad': 0.498, 'surprise': 0.168}}

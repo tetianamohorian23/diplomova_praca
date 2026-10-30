@@ -9,7 +9,7 @@ from common_splits import CACHE, load_splits
 
 d = load_splits()
 z = np.load(CACHE.parent / "emb_wavlm_base_plus.npz")
-X = np.concatenate([z["mean"], z["std"]], 2).astype(np.float32).mean(1)
+X = np.concatenate([z["mean"], z["std"]], 2).astype(np.float32).mean(1)  # average over layers
 sp, y = d.experiment_split.to_numpy(), d.label_id.to_numpy()
 sc = StandardScaler().fit(X[sp == "train"]); X = sc.transform(X)
 tr, te = np.where(sp == "train")[0], np.where(sp == "test")[0]

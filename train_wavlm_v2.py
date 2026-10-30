@@ -7,7 +7,7 @@ Changes over train_deep_models.train_wavlm_multitask:
   * layer-wise lr decay, linear warmup + cosine schedule, label smoothing, class weights;
   * corpus head as "aux" (original idea) or "grl" (gradient reversal -> corpus-invariant features);
   * every run writes to its own directory (the old ablation overwrote wavlm_multitask.json);
-  * saves validation/test probabilities so runs can be ensembled in analyze_results.py.
+  * saves validation/test probabilities so runs can be ensembled in final_evaluation.py.
 """
 from __future__ import annotations
 
@@ -33,14 +33,14 @@ from train_frozen_heads import GradReverse
 SR = 16_000
 MAX_SAMPLES = SR * 4
 OUT = CACHE.parent / "finetune"
-AMP = True
+AMP = True  # bfloat16 autocast on CUDA (set from --no-amp)
 
 
 class WaveDataset(Dataset):
     def __init__(self, data, train: bool, noise_aug: bool = False) -> None:
         self.data = data.reset_index(drop=True)
         self.train = train
-        self.noise_aug = noise_aug
+        self.noise_aug = noise_aug  # white / pink / babble noise at 0-30 dB SNR (as in train_noise_robust.py)
 
     def __len__(self) -> int:
         return len(self.data)
@@ -56,9 +56,9 @@ class WaveDataset(Dataset):
         if wave.ndim == 2:
             wave = wave.mean(1)
         if self.train:
-            if random.random() < 0.5:
+            if random.random() < 0.5:  # speed perturbation
                 f = random.uniform(0.9, 1.1)
-                wave = torch.nn.functional.interpolate(wave[None, None], scale_factor=1 / f, mode="linear")[0, 0]
+                wave = torch.nn.functional.interpolate(wave[None, None], scale_factor=1 / f, mode="linear")[0, 0]  # fast speed change
             wave = wave * 10 ** (random.uniform(-6, 6) / 20)
             if self.noise_aug and random.random() < 0.7:
                 from noise_utils import babble, mix, pink, white
@@ -68,7 +68,7 @@ class WaveDataset(Dataset):
                 noise = {"white": lambda: white(len(w_np), rng), "pink": lambda: pink(len(w_np), rng),
                          "babble": lambda: babble(len(w_np), rng, self._pool)}[kind]()
                 wave = torch.from_numpy(mix(w_np, noise, snr).astype(np.float32))
-            elif random.random() < 0.5:
+            elif random.random() < 0.5:  # mild additive noise at 15-35 dB SNR
                 snr = random.uniform(15, 35)
                 power = wave.pow(2).mean().clamp_min(1e-8)
                 wave = wave + torch.randn_like(wave) * (power / 10 ** (snr / 10)).sqrt()
@@ -98,7 +98,7 @@ class SSLClassifier(nn.Module):
         cfg.apply_spec_augment = mask_prob > 0
         self.encoder = AutoModel.from_pretrained(name, config=cfg)
         self.encoder.freeze_feature_encoder() if hasattr(self.encoder, "freeze_feature_encoder") else None
-        if freeze_layers:
+        if freeze_layers:  # keep the lowest transformer layers fixed (saves VRAM for the 300M-parameter XLS-R)
             for n_, p_ in self.encoder.named_parameters():
                 low = n_.startswith("encoder.layers.") and int(n_.split(".")[2]) < freeze_layers
                 if low or n_.startswith(("feature_projection", "encoder.pos_conv_embed", "masked_spec_embed")):
@@ -115,7 +115,7 @@ class SSLClassifier(nn.Module):
     def forward(self, waves, lengths, grl_scale: float = 1.0):
         frame_lengths = self.encoder._get_feat_extract_output_lengths(lengths)
         out = self.encoder(waves, output_hidden_states=True)
-        hs = torch.stack(out.hidden_states, 0)
+        hs = torch.stack(out.hidden_states, 0)  # (L, B, T, H)
         mix = (hs * torch.softmax(self.layer_logits, 0)[:, None, None, None]).sum(0)
         mask = (torch.arange(mix.shape[1], device=mix.device)[None] < frame_lengths[:, None]).unsqueeze(-1).to(mix.dtype)
         pooled = self.drop((mix * mask).sum(1) / mask.sum(1).clamp_min(1))
@@ -248,7 +248,7 @@ def main() -> None:
         print(f"epoch {epoch}: val_macro_f1={vm['macro_f1']:.4f} val_acc={vm['accuracy']:.4f}", flush=True)
         if vm["macro_f1"] > best:
             best, best_epoch, stale = vm["macro_f1"], epoch, 0
-            best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
+            best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}  # keep VRAM free
         else:
             stale += 1
             if stale >= args.patience:

@@ -1,11 +1,10 @@
-__pycache__/
-*.py[cod]
+# environments
 .venv/
 .venv-gpu/
-.pytest_cache/
-.idea/
-.vscode/
+__pycache__/
+*.pyc
 
+# data and large generated files (not versioned; see README)
 CREMA-D/
 EMODB/
 RAVDESS/
@@ -15,16 +14,14 @@ TESS/
 UA-SER/
 audio_16k_mono/
 features/
-
-*.joblib
-experiments/v2/emb_*
+combined_dataset*.csv
+experiments/**/*.npz
+experiments/**/*.npy
+experiments/**/*.pt
+experiments/**/*.joblib
+experiments/**/*.log
 models/finetuned/
 
-webapp/
-bot.py
-bot_art.py
+# personal / local
 data/
-run_web.bat
-run_bot.bat
-experiments/v2/finetune/**/*.pt
-experiments/v2/cnn_ssl/**/*.pt
+*.docx

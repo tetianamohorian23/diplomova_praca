@@ -16,7 +16,7 @@ args = ap.parse_args()
 out = Path(__file__).resolve().parent / "models" / ("norm" if args.norm else "")
 out.mkdir(parents=True, exist_ok=True)
 data, X = load_splits(), load_features("wavlm_base_plus")
-if args.norm:
+if args.norm:  # standardise every corpus with its own (unlabelled) statistics, as in the cross-corpus experiment
     for c in data.dataset.unique():
         m = (data.dataset == c).to_numpy()
         X[m] = (X[m] - X[m].mean(0, keepdims=True)) / (X[m].std(0, keepdims=True) + 1e-5)

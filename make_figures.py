@@ -23,11 +23,12 @@ V2 = CACHE.parent
 FIG = V2 / "figures"
 FIG.mkdir(exist_ok=True)
 
+# ---- palette (reference categorical order; slots are bound to entities, never cycled)
 BLUE, ORANGE, AQUA, YELLOW, MAGENTA, GREEN, VIOLET, RED = "#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"
 GRAY = "#8d8c86"
 SURFACE, INK, INK2, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#e4e3df"
 SEQ = LinearSegmentedColormap.from_list("seq_blue", ["#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"])
-EMO_COLOR = dict(zip(LABELS, [RED, GREEN, VIOLET, YELLOW, GRAY, BLUE, MAGENTA]))
+EMO_COLOR = dict(zip(LABELS, [RED, GREEN, VIOLET, YELLOW, GRAY, BLUE, MAGENTA]))  # fixed per emotion
 FAMILY = {"classical": GRAY, "cnn": ORANGE, "frozen": BLUE, "finetuned": VIOLET, "ensemble": AQUA}
 
 plt.rcParams.update({
@@ -95,6 +96,7 @@ def finetune_probs(prefix="wavlm_v2__none"):
     return ps
 
 
+# ------------------------------------------------------------------ models used in several figures
 old = {d["model"]: d for d in json.loads((ROOT / "experiments/summary.json").read_text())}
 W = frozen_probs("wavlm_base_plus"); W2 = frozen_probs("wav2vec2_base"); R = robust_probs(); FT = finetune_probs()
 ens = {}
@@ -106,7 +108,8 @@ if FTN: ens["WavLM fine-tuned + noise aug. (ensemble)"] = np.mean(FTN, 0)
 XL = finetune_probs("xlsrft__none")
 if XL: ens["XLS-R fine-tuned + noise aug. (ensemble)"] = np.mean(XL, 0)
 
-rows = []
+# ================================================================== 01 model overview
+rows = []  # (label, family, value, lo, hi)
 
 
 def add_row(label, fam, vals=None, value=None, ci=None):
@@ -146,6 +149,7 @@ handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in FAMILY.values()]
 ax.legend(handles, ["classical", "CNN", "frozen SSL + head", "fine-tuned SSL", "ensembles (deployed candidates)"], loc="lower right")
 save(fig, "01_model_comparison.png")
 
+# ================================================================== 02 per-emotion F1 heatmap
 cand = {"openSMILE + logreg": None, "CNN-BiLSTM": "cnn_bilstm", "Wav2Vec2 fine-tuned": "wav2vec2", "WavLM fine-tuned (CPU run)": "wavlm_multitask"}
 M, names = [], []
 if osm:
@@ -164,6 +168,7 @@ cb = fig.colorbar(im, ax=ax, fraction=0.025, pad=0.02); cb.set_label("F1", color
 ax.set_title("F1 per emotion")
 save(fig, "02_per_emotion_f1.png")
 
+# ================================================================== 03 confusion matrices of the strongest models
 show = [(n, P) for n, P in ens.items() if "noise aug" in n or "fine-tuned (ens" in n][:3]
 if show:
     fig, axs = plt.subplots(1, len(show), figsize=(5.4 * len(show), 4.8), constrained_layout=True)
@@ -178,6 +183,7 @@ if show:
     fig.suptitle("Confusion matrices (row-normalised)", x=0.5, ha="center", fontweight="bold")
     save(fig, "03_confusion_matrices.png")
 
+# ================================================================== 04 corpus-task ablation
 fr = []
 for f in glob.glob(str(V2 / "frozen/*.json")):
     r = json.loads(open(f).read())
@@ -202,6 +208,7 @@ if len(fr):
     fig.suptitle("Does a corpus-related auxiliary task help? (frozen features + head)", x=0.5, ha="center", fontweight="bold", y=1.02)
     save(fig, "04_corpus_task_ablation.png")
 
+# ================================================================== 05 leave-one-corpus-out
 lo = []
 for f in glob.glob(str(V2 / "frozen/wavlm_base_plus*hold*.json")):
     r = json.loads(open(f).read()); lo.append({"cfg": f"{r['mode']} {r['lambda']:g}", "hold": r["holdout"], "f1": r["test"]["macro_f1"]})
@@ -230,6 +237,8 @@ if len(lo):
     ax.set_title("Cross-corpus (leave-one-corpus-out): training excludes the tested corpus")
     save(fig, "05_cross_corpus.png")
 
+# ================================================================== 06 noise robustness
+# All four systems come from ONE evaluation (evaluate_noise_all.py -> noise_all_systems.json): identical corrupted audio for every system.
 nw = load("noise_all_systems.json")
 if nw:
     cond_groups = [("white noise", "white", [20, 10, 5, 0]), ("babble (other speech)", "babble", [20, 10, 5]), ("pink noise", "pink", [10])]
@@ -248,6 +257,7 @@ if nw:
     fig.subplots_adjust(bottom=0.25)
     save(fig, "06_noise_robustness.png")
 
+# ================================================================== 07 calibration and abstention
 if R:
     P = np.mean(R, 0); conf = P.max(1); ok = P.argmax(1) == y
     fig, axs = plt.subplots(1, 2, figsize=(9.5, 3.8))
@@ -265,6 +275,7 @@ if R:
         m = conf >= t; axs[1].plot(m.mean(), ok[m].mean(), "o", color=ORANGE); axs[1].annotate(f"conf ≥ {t:g}", (m.mean(), ok[m].mean()), textcoords="offset points", xytext=(6, -12), fontsize=8, color=INK2)
     save(fig, "07_calibration.png")
 
+# ================================================================== 08 SSL CNN and semi-supervised
 ss = load("semi_supervised_wavlm.json")
 if len(cs) or ss:
     fig, axs = plt.subplots(1, 2, figsize=(10.5, 3.9))
@@ -285,6 +296,7 @@ if len(cs) or ss:
         axs[1].set_title("Semi-supervised learning on WavLM embeddings")
     save(fig, "08_selfsup_and_semisup.png")
 
+# ================================================================== 09 fine-tuning curves
 runs = [(f.parent.name, json.loads(f.read_text())) for f in sorted((V2 / "finetune").glob("*/result.json")) if "hold-" not in f.parent.name]
 if runs:
     fig, axs = plt.subplots(1, 2, figsize=(10.5, 3.8))
@@ -298,6 +310,7 @@ if runs:
     axs[0].legend(fontsize=7, ncol=1, loc="lower right")
     save(fig, "09_finetuning_curves.png")
 
+# ================================================================== 10 per-corpus F1
 best = ens.get("WavLM fine-tuned + noise aug. (ensemble)") if "WavLM fine-tuned + noise aug. (ensemble)" in ens else None
 sel = [(n, ens[n], c) for n, c in (("WavLM frozen (5-seed ensemble)", BLUE), ("WavLM frozen + noise aug. (ensemble)", AQUA), ("WavLM fine-tuned (ensemble)", VIOLET),
                                     ("WavLM fine-tuned + noise aug. (ensemble)", ORANGE), ("XLS-R fine-tuned + noise aug. (ensemble)", RED)) if n in ens]
@@ -311,6 +324,7 @@ if sel:
     ax.set_ylabel("macro-F1"); ax.legend(ncol=2, loc="lower left", fontsize=8); ax.set_title("Test macro-F1 per corpus (seen corpora; TESS has no training speakers)")
     save(fig, "10_per_corpus.png")
 
+# ================================================================== 11 dataset overview
 fig, axs = plt.subplots(1, 2, figsize=(11, 4), gridspec_kw={"width_ratios": [1.1, 1]})
 sp = data.pivot_table(index="dataset", columns="experiment_split", values="audio_path", aggfunc="count", fill_value=0)[["train", "validation", "test"]]
 left = np.zeros(len(sp))
@@ -327,6 +341,7 @@ axs[1].set_title("Clips per emotion and corpus (colour: log scale)")
 axs[0].annotate("30 clips", (60, list(sp.index).index("SVK-DB")), va="center", fontsize=8, color=INK2)
 save(fig, "11_dataset_overview.png")
 
+# ================================================================== 12 layer analysis
 lp = V2 / "layer_probe.csv"
 if lp.exists():
     pr = pd.read_csv(lp)
@@ -339,6 +354,7 @@ if lp.exists():
     axs[1].set_xlabel("WavLM layer"); axs[1].set_ylabel("learned weight (mean of 5 seeds)"); axs[1].set_title("Weights the head puts on each layer"); axs[1].grid(axis="x", visible=False)
     save(fig, "12_layers.png")
 
+# ================================================================== 13 speaker-grouped CV
 g = load("grouped_cv.json")
 if g:
     fig, axs = plt.subplots(1, 2, figsize=(10.5, 3.6), gridspec_kw={"width_ratios": [1, 1.2]})
@@ -352,6 +368,7 @@ if g:
     axs[1].grid(axis="y", visible=False); axs[1].set_title("CV macro-F1 per corpus (SVK-DB omitted: 30 clips)"); axs[1].set_xlabel("macro-F1")
     save(fig, "13_grouped_cv.png")
 
+# ================================================================== 14 t-SNE
 try:
     from sklearn.manifold import TSNE
     z = np.load(V2 / "emb_wavlm_base_plus.npz")
@@ -368,6 +385,7 @@ try:
 except Exception as e:
     print("t-SNE skipped:", e)
 
+# ================================================================== 15 backbones (filled when the extra embeddings exist)
 bb = load("backbones.json")
 if bb:
     names = list(bb)
@@ -379,6 +397,7 @@ if bb:
         ax.set_xticks(range(len(names)), [n.replace(" (", chr(10) + "(") for n in names], fontsize=8); ax.set_ylim(0, 0.9); ax.set_title(title); ax.set_ylabel("macro-F1"); ax.grid(axis="x", visible=False)
     save(fig, "15_backbones.png")
 
+# ================================================================== 16 corruptions not used in training
 if nw:
     systems = [("frozen, clean training", GRAY), ("frozen, noise-augmented", BLUE), ("fine-tuned, clean training", ORANGE), ("fine-tuned, noise-augmented", VIOLET)]
     systems = [(n, c) for n, c in systems if any(n in v for v in nw.values())]

@@ -15,7 +15,7 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 from common_splits import LABELS, ROOT, load_splits
 
 
-class mf:
+class mf:  # palette and style identical to make_figures.py (not imported: that module regenerates every figure on import)
     BLUE, ORANGE, AQUA, YELLOW, MAGENTA, GREEN, VIOLET, RED = "#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"
     GRAY, SURFACE, INK, INK2, GRID = "#8d8c86", "#fcfcfb", "#0b0b0b", "#52514e", "#e4e3df"
     EMO_COLOR = dict(zip(LABELS, [RED, GREEN, VIOLET, YELLOW, GRAY, BLUE, MAGENTA]))
@@ -31,7 +31,7 @@ plt.rcParams.update({
 OUT = ROOT / "diplomka" / "obrazky"
 OUT.mkdir(parents=True, exist_ok=True)
 data = load_splits()
-SK = {l: l for l in LABELS}
+SK = {l: l for l in LABELS}  # English emotion names
 
 
 def save(fig, name):
@@ -40,6 +40,7 @@ def save(fig, name):
     print("saved", OUT / name)
 
 
+# ---------------------------------------------------------------- Obr. 1: signal + spectrogram (CREMA-D, angry, test split)
 row = data[(data.dataset == "CREMA-D") & (data.emotion == "angry") & (data.experiment_split == "test")].iloc[0]
 w, sr = sf.read(ROOT / row.audio_path)
 assert sr == 16000 and w.ndim == 1
@@ -54,6 +55,7 @@ fig.tight_layout()
 save(fig, "obr_signal_spektrogram.png")
 print("example clip:", row.audio_path, f"{len(w) / sr:.2f} s")
 
+# ---------------------------------------------------------------- Obr. 2: clips per emotion
 cnt = data.emotion.value_counts().reindex(LABELS)
 fig, ax = plt.subplots(figsize=(8, 4))
 bars = ax.bar([SK[l] for l in LABELS], cnt.values, color=[mf.EMO_COLOR[l] for l in LABELS], width=0.62, label=None)
@@ -66,6 +68,7 @@ ax.set_ylim(0, cnt.max() * 1.45)
 fig.tight_layout()
 save(fig, "obr_emocie.png")
 
+# ---------------------------------------------------------------- Obr. 3: clips per corpus
 order = data.dataset.value_counts()
 names = {"EMODB": "EMO-DB"}
 lang = {l: g.language.iloc[0] for l, g in data.groupby("dataset")}
@@ -81,6 +84,7 @@ ax.legend(handles=[plt.Rectangle((0, 0), 1, 1, color=mf.BLUE, label="used corpor
 fig.tight_layout()
 save(fig, "obr_korpusy.png")
 
+# ---------------------------------------------------------------- helpers for diagrams
 def canvas(w_, h_, xmax=10, ymax=10):
     fig, ax = plt.subplots(figsize=(w_, h_)); ax.axis("off"); ax.set_xlim(0, xmax); ax.set_ylim(0, ymax)
     return fig, ax
@@ -95,6 +99,7 @@ def arrow(ax, x1, y1, x2, y2, color=mf.INK2):
     ax.add_patch(FancyArrowPatch((x1, y1), (x2, y2), arrowstyle="-|>", mutation_scale=14, lw=1.3, color=color))
 
 
+# ---------------------------------------------------------------- Obr. 4: dataset preparation pipeline (section 3.5)
 sp = data.experiment_split.value_counts()
 n = f"{len(data):,}".replace(",", " ")
 fig, ax = canvas(8.6, 7.2)
@@ -110,6 +115,7 @@ for x, lab, key, col in ((0.2, "Training set", "train", "#eaf2fd"), (3.6, "Valid
     arrow(ax, 5, 2.7, x + 1.4, 1.9)
 save(fig, "obr_priprava_dat.png")
 
+# ---------------------------------------------------------------- Obr. 5: three approaches to SER (section 3.2)
 fig, ax = canvas(10.8, 5.6, 11, 8)
 rows = [
     (6.2, "#eaf2fd", mf.BLUE, ["Audio", "MFCC / eGeMAPS\nhandcrafted features", "SVM · Logistic Regression\nRandom Forest"], "Classical methods"),
@@ -126,6 +132,7 @@ for y0, fc, ec, steps, title in rows:
     ax.text(10.15, y0 + 0.75, "emotion", ha="left", va="center", fontsize=9.5, fontweight="bold", color=mf.INK2)
 save(fig, "obr_pristupy.png")
 
+# ---------------------------------------------------------------- Obr. 6: domain shift (section 3.4)
 fig, ax = canvas(10, 4.8, 10, 6)
 box(ax, 0.2, 3.7, 3.4, 1.7, "Training data\nEnglish · several corpora\nknown speakers", fc="#eaf2fd", ec=mf.BLUE)
 box(ax, 3.3, 0.3, 3.4, 1.5, "Trained SER model\nlearned acoustic\nrepresentations", fc="#f4f4f1", ec=mf.GRAY)
@@ -138,6 +145,7 @@ for x0, lab in ((4.1, "speaker"), (5.0, "language"), (5.9, "corpus")):
 ax.text(5, 0.0, "A change in the data distribution can reduce classification accuracy.", ha="center", va="top", fontsize=9, color=mf.INK2)
 save(fig, "obr_domain_shift.png")
 
+# ---------------------------------------------------------------- Obr. 7: ADDoG vs CNN, UAR (values from Gideon et al., IEEE TAC 2019, Table 2)
 addog = {"MSP-Improv → IEMOCAP": ((0.439, 0.022), (0.474, 0.009)), "IEMOCAP → MSP-Improv": ((0.432, 0.012), (0.444, 0.007))}
 fig, ax = plt.subplots(figsize=(7, 4)); xs = np.arange(2); w2 = 0.34
 for k, (lab, col) in enumerate((("CNN", mf.GRAY), ("ADDoG", mf.BLUE))):
@@ -150,6 +158,7 @@ ax.set_xticks(xs, list(addog)); ax.set_ylabel("UAR (3-class valence)"); ax.set_y
 ax.set_title("Cross-corpus transfer without target labels: CNN vs. ADDoG"); ax.legend(loc="upper center", ncol=3)
 fig.tight_layout(); save(fig, "obr_addog_uar.png")
 
+# ---------------------------------------------------------------- Obr. 8: class presence matrix (real labels from splits.csv)
 em = data.pivot_table(index="dataset", columns="emotion", values="audio_path", aggfunc="count", fill_value=0)[LABELS]
 order_c = ["CREMA-D", "RAVDESS", "TESS", "SAVEE", "EMODB", "UA-SER", "SVK-DB"]
 em = em.loc[order_c]
@@ -165,6 +174,7 @@ ax.set_xticks(np.arange(-.5, 7, 1), minor=True); ax.set_yticks(np.arange(-.5, 7,
 ax.set_title("Presence of the 7 target emotion classes in each corpus (number of classes in brackets)", pad=28)
 fig.tight_layout(); save(fig, "obr_triedy_korpusy.png")
 
+# ---------------------------------------------------------------- Obr. 4.1: architecture of the solution (chapter 4.1)
 fig, ax = canvas(10.4, 7.6, 10, 10)
 box(ax, 0.9, 8.8, 8.2, 1.0, "Data: 7 emotional speech corpora, 13 406 recordings, 7 emotion classes\nSpeaker-disjoint split: training 6 705 / validation 3 190 / test 3 511", fs=9.2)
 cols = [
@@ -181,16 +191,24 @@ for x0, fc, ec, title, in_, mod in cols:
     arrow(ax, x0 + 1.55, 3.7, 5, 2.95)
 box(ax, 0.8, 1.7, 8.4, 1.25, "Common evaluation on identical data\nmacro-F1 · bootstrap CI · without TESS · cross-corpus (LOCO)\nnoise and distortions · calibration", fs=9.2, fc="#e6f7ef", ec=mf.AQUA)
 arrow(ax, 5, 1.7, 5, 1.1)
-box(ax, 2.2, 0.15, 5.6, 0.95, "Application: command line and window (Tkinter)", fs=9.2, fc="#f4f4f1", ec=mf.GRAY)
+box(ax, 1.4, 0.15, 7.2, 0.95, "Application: web app EmoVoice · Telegram bot\n(command-line tool for checks)", fs=9.2, fc="#f4f4f1", ec=mf.GRAY)
 save(fig, "obr_architektura.png")
 
-fig, ax = canvas(10.4, 6.2, 10, 8)
-box(ax, 0.2, 6.3, 9.6, 1.3, "Input: audio file · folder of files · microphone recording (5 s)\nformats WAV, FLAC, OGG, MP3, M4A, AIFF", fs=9.2)
-box(ax, 0.2, 4.5, 9.6, 1.3, "Preprocessing and checks: conversion to 16 kHz mono, refusal of silence and of clips shorter than 0.25 s,\nspeech-activity estimate (warning if below 10 %), splitting into 4 s windows (3 s in the timeline mode)", fs=9.0, fc="#fdeee8", ec=mf.ORANGE)
-box(ax, 0.2, 2.5, 4.6, 1.5, "Frozen WavLM-base-plus\nhidden states of all layers,\nmean and standard deviation over time", fs=9.0, fc="#efecfb", ec=mf.VIOLET)
-box(ax, 5.2, 2.5, 4.6, 1.5, "Five light heads (noise-augmented)\naverage of probabilities\n(optional: fine-tuned ensemble)", fs=9.0, fc="#efecfb", ec=mf.VIOLET)
-box(ax, 0.2, 0.3, 4.6, 1.5, "Command line\ntext · JSON · CSV · timeline\nconfidence threshold (\"uncertain\")", fs=9.0, fc="#e6f7ef", ec=mf.AQUA)
-box(ax, 5.2, 0.3, 4.6, 1.5, "Window (Tkinter)\nopen file / record 5 s\nprobability bars", fs=9.0, fc="#e6f7ef", ec=mf.AQUA)
-arrow(ax, 5, 6.3, 5, 5.8); arrow(ax, 5, 4.5, 2.5, 4.0); arrow(ax, 2.5 + 2.3, 3.25, 5.2, 3.25)
-arrow(ax, 7.5, 2.5, 7.5, 1.8); arrow(ax, 7.5, 2.5, 2.5, 1.8)
+# ---------------------------------------------------------------- application architecture (chapter 4.9.1)
+fig, ax = canvas(10.4, 6.6, 10, 8)
+for x0, text, fc, ec in [
+    (0.2, "Command-line tool\npredict_emotion.py", "#e6f7ef", mf.AQUA),
+    (3.6, "Web app EmoVoice\nFastAPI + HTML/JS\nmood diary", "#eaf2fd", mf.BLUE),
+    (7.0, "Telegram bot\naiogram (bot.py)\nprivate and group chats", "#eaf2fd", mf.BLUE),
+]:
+    box(ax, x0, 6.2, 2.8, 1.5, text, fs=9.0, fc=fc, ec=ec)
+    arrow(ax, x0 + 1.4, 6.2, x0 + 1.4, 5.5)
+box(ax, 0.2, 3.5, 9.6, 2.0, "Shared recognition core (Predictor, webapp/service.py)\nconversion to 16 kHz mono · refusal of silence and of clips shorter than 0.25 s · speech-share estimate\n"
+    "windows (3 s in the web app and the bot, 4 s in the command-line tool) · frozen WavLM-base-plus\nfive noise-augmented heads · average of probabilities · confidence threshold 0.5 (\"uncertain\")",
+    fs=9.0, fc="#efecfb", ec=mf.VIOLET)
+box(ax, 0.2, 0.3, 4.6, 1.6, "Result\nemotion · probabilities of 7 classes\nconfidence · \"uncertain\" flag · warning", fs=9.0, fc="#e6f7ef", ec=mf.AQUA)
+box(ax, 5.2, 0.3, 4.6, 1.6, "SQLite database (data/emotions.db)\nentries · links · google_links · tg_codes\nmood diary shared by the web app and the bot", fs=9.0, fc="#fdeee8", ec=mf.ORANGE)
+arrow(ax, 2.5, 3.5, 2.5, 1.9)
+arrow(ax, 7.5, 3.5, 7.5, 1.9)
+ax.text(7.6, 2.7, "saving (web app: on request,\nprivate Telegram chat: always)", fontsize=8.2, color=mf.INK2, va="center")
 save(fig, "obr_aplikacia.png")

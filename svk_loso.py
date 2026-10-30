@@ -7,10 +7,22 @@ Frozen WavLM + head (mode none), 5 seeds, probabilities averaged over seeds, boo
 import json
 
 import numpy as np
+from sklearn.metrics import f1_score
 
-from analyze_results import bootstrap_ci, mf1
 from common_splits import CACHE, LABELS, load_splits
 from train_frozen_heads import load_features, run_one
+
+
+
+def mf1(y, p) -> float:
+    return f1_score(y, p, labels=sorted(set(y)), average="macro", zero_division=0)
+
+
+def bootstrap_ci(y, p, n=1000, seed=0):
+    rng = np.random.default_rng(seed)
+    vals = [mf1(y[i], p[i]) for i in (rng.integers(0, len(y), len(y)) for _ in range(n))]
+    return np.percentile(vals, [2.5, 97.5])
+
 
 data = load_splits()
 X = load_features("wavlm_base_plus")
@@ -20,6 +32,7 @@ pos = {i: k for k, i in enumerate(svk)}
 speakers = data.loc[svk, "speaker_id"].to_numpy()
 out = {}
 
+# (a) zero-shot
 P = np.zeros((len(svk), len(LABELS)))
 for seed in range(5):
     _, _, probs, idx = run_one("wavlm_base_plus", X, data, "none", 0.0, seed, holdout="SVK-DB")
@@ -27,6 +40,7 @@ for seed in range(5):
         P[pos[i]] += p / 5
 out["zero_shot"] = P
 
+# (b) leave-one-speaker-out
 P = np.zeros((len(svk), len(LABELS)))
 for sp in sorted(set(speakers)):
     d = data.copy()

@@ -11,4 +11,4 @@ joblib==1.6.0
 matplotlib==3.11.2
 tabulate==0.10.0
 opensmile==2.6.0
-pypdf==6.20.1   # only to read the reference thesis
+pytest

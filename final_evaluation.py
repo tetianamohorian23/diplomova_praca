@@ -50,6 +50,7 @@ def boot(yt, p, n=1000):
     return np.percentile(v, [2.5, 97.5])
 
 
+# ---------------------------------------------------------------- 1. all models, one table
 rows = []
 for d in json.loads((ROOT / "experiments/summary.json").read_text()):
     cr = d["classification_report"]
@@ -75,6 +76,7 @@ pred = best.argmax(1)
 lo, hi = boot(y, pred)
 out.append(f"\nBest model (WavLM frozen, 5-seed head ensemble): macro-F1 {mf1(y, pred):.3f}, 95% bootstrap CI [{lo:.3f}, {hi:.3f}].\n")
 
+# ---------------------------------------------------------------- 2. validation-based selection
 fr = []
 for f in glob.glob(str(V2 / "frozen/*.json")):
     r = json.loads(open(f).read())
@@ -95,6 +97,7 @@ out.append(f"\nValidation-selected WavLM configuration (`{_sel}`), ensemble of i
            "The differences between 'none' and the multi-task variants (about 0.01-0.02) are smaller than the seed-to-seed std (0.02-0.04), "
            "so they are not significant; the deployed model uses 'none' (simplest, validation F1 within 0.004 of the best).\n")
 
+# ---------------------------------------------------------------- 3. corpus-balanced & without TESS
 out.append("\n## 3. Robustness of the headline number to the TESS imbalance\n")
 no = ds != "TESS"
 per_corpus = {c: mf1(y[ds == c], pred[ds == c]) for c in sorted(set(ds)) if (ds == c).sum() >= 20}
@@ -116,8 +119,9 @@ if gcv:
             md(pd.DataFrame(gcv["folds"]).drop(columns="corpora")),
             "\nPer-corpus F1 in CV:\n\n", md(pd.Series(gcv["per_corpus_f1"], name="macro_F1").rename_axis("corpus").reset_index())]
 
+# ---------------------------------------------------------------- 4. cross-corpus
 loco = []
-for f in glob.glob(str(V2 / "frozen/wavlm_base_plus__*hold*.json")):
+for f in glob.glob(str(V2 / "frozen/wavlm_base_plus__*hold*.json")):  # WavLM-base-plus only; other backbones are in section 7e
     r = json.loads(open(f).read())
     loco.append({"config": f"{r['mode']} λ={r['lambda']:g}", "holdout": r["holdout"], "f1": r["test"]["macro_f1"]})
 loco = pd.DataFrame(loco)
@@ -136,6 +140,7 @@ if svk:
     out += ["\n### Slovak (SVK-DB, 30 clips, 4 speakers)\n", md(pd.DataFrame([{"setting": k, "n_clips": v["n_clips"], "macro_F1": v["macro_f1"],
             "CI95": f"[{v['ci95'][0]:.2f}, {v['ci95'][1]:.2f}]", "accuracy": v["accuracy"]} for k, v in svk.items()]))]
 
+# ---------------------------------------------------------------- 5. calibration / abstention
 conf = best.max(1); correct = pred == y
 bins = np.linspace(0, 1, 11); ece = 0.0; rel = []
 for a, b in zip(bins[:-1], bins[1:]):
@@ -155,6 +160,7 @@ fig, ax = plt.subplots(figsize=(4, 4)); r = np.array(rel)
 ax.plot([0, 1], [0, 1], "k--"); ax.plot(r[:, 0], r[:, 1], "o-"); ax.set_xlabel("confidence"); ax.set_ylabel("accuracy"); ax.set_title("Reliability diagram")
 fig.tight_layout(); fig.savefig(PL / "reliability.png", dpi=150); plt.close(fig)
 
+# ---------------------------------------------------------------- 6. emotions / confusions
 cm = confusion_matrix(y, pred, labels=range(7))
 fig, ax = plt.subplots(figsize=(5.5, 4.5)); ax.imshow(cm / cm.sum(1, keepdims=True), cmap="Blues")
 ax.set_xticks(range(7), LABELS, rotation=45); ax.set_yticks(range(7), LABELS)
@@ -165,6 +171,7 @@ cr = precision_recall_fscore_support(y, pred, labels=range(7), zero_division=0)
 out += ["\n## 6. Per-emotion precision / recall / F1 (best model)\n",
         md(pd.DataFrame({"emotion": LABELS, "precision": cr[0], "recall": cr[1], "f1": cr[2], "support": cr[3]}))]
 
+# ---------------------------------------------------------------- 7. noise
 nz = load("robustness_noise.json")
 if nz:
     out += ["\n## 7. Robustness to additive white noise (stratified test subset, 1000 clips)\n",
@@ -172,6 +179,7 @@ if nz:
     fig, ax = plt.subplots(figsize=(5, 3)); ax.plot(list(nz), [v["macro_f1"] for v in nz.values()], "o-"); ax.set_ylabel("macro-F1"); ax.grid(alpha=.3)
     fig.tight_layout(); fig.savefig(PL / "noise.png", dpi=150); plt.close(fig)
 
+# ---------------------------------------------------------------- 7b. noise-augmented heads (deployed default)
 nr = load("noise_robust.json")
 if nr:
     import torch
@@ -205,6 +213,7 @@ if nr:
             md(pd.DataFrame([{"min_confidence": t, "coverage": (conf_r >= t).mean(), "accuracy_on_answered": ok_r[conf_r >= t].mean(),
                               "macro_F1_on_answered": mf1(y[conf_r >= t], pr_[conf_r >= t])} for t in (0.0, 0.4, 0.5, 0.6, 0.7, 0.8)]))]
 
+# ---------------------------------------------------------------- 7c. fine-tuning on GPU
 ft_runs = sorted((V2 / "finetune").glob("wavlm_v2__*/result.json"))
 if ft_runs:
     rows_f, probs_f = [], {}
@@ -238,6 +247,7 @@ if ft_runs:
     d_, (l_, h_) = paired(ens_none.argmax(1), ens["WavLM frozen + head"].argmax(1))
     out.append(f"\nPaired bootstrap, fine-tuned ('none' ensemble) minus frozen ensemble: delta macro-F1 = {d_:+.3f} (95% CI {l_:+.3f} .. {h_:+.3f}).\n")
 
+# ---------------------------------------------------------------- 7d. fine-tuning with noise augmentation + clean control
 extra_rows = []
 for pat in ("ftnoise__*", "ftclean__*"):
     for f in sorted((V2 / "finetune").glob(pat + "/result.json")):
@@ -252,6 +262,7 @@ if extra_rows:
             f"\nEnsemble of the noise-augmented fine-tuned runs: macro-F1 {mf1(y, pn):.3f} (95% CI [{l_:.3f}, {h_:.3f}]), "
             f"accuracy {accuracy_score(y, pn):.3f}, without TESS {mf1(y[no], pn[no]):.3f}.\n"]
 
+# ---------------------------------------------------------------- 7d2. XLS-R fine-tuning
 xl_runs = sorted((V2 / "finetune").glob("xlsrft__*/result.json"))
 if xl_runs:
     rows_x, probs_x = [], []
@@ -265,6 +276,7 @@ if xl_runs:
             "Seed spread is large (first run 0.62, the others 0.70). XLS-R generalises well to the unseen TESS speakers but is clearly weaker than fine-tuned WavLM on the seen corpora "
             "(without-TESS F1 about 0.60 vs 0.77), and the frozen XLS-R features with a light head (7e) are as good as the fine-tuned model.\n"]
 
+# ---------------------------------------------------------------- 7e. backbones
 bbj = load("backbones.json")
 if bbj:
     out += ["\n## 7e. Backbone comparison (frozen features, same plain head)\n",
@@ -273,6 +285,7 @@ if bbj:
                               "cross-corpus F1": (f"{v['loco_f1']:.3f} ± {v['loco_f1_std']:.3f}" if v["loco_f1"] is not None else "n/a"),
                               **{c: f"{x:.3f}" for c, x in v["loco_per_corpus"].items()}} for k, v in bbj.items()]))]
 
+# ---------------------------------------------------------------- 7f. cross-corpus of the fine-tuned model
 ftl = {}
 for f in glob.glob(str(V2 / "finetune/loco__*__hold-*/result.json")):
     r = json.loads(open(f).read()); ftl.setdefault(r["args"]["holdout"], []).append(r["test"]["macro_f1"])
@@ -287,6 +300,7 @@ if ftl:
             "Leave-one-corpus-out, macro-F1 on the unseen corpus. The fine-tuned model uses clean training and is averaged over the available seeds (seed spread of fine-tuning is large, "
             "see 7c); per-corpus normalisation needs a batch of recordings from the target source.\n\n", md(t.reset_index().rename(columns={"index": "held-out corpus"}))]
 
+# ---------------------------------------------------------------- 7g. noise on identical audio for all systems
 nall = load("noise_all_systems.json")
 if nall:
     rowsn = []
@@ -296,6 +310,7 @@ if nall:
     out += ["\n## 7g. All systems on identical corrupted audio (1,050-clip test subset, macro-F1)\n",
             "Conditions marked 'NO' were never used in training of any system. Brown noise has >99% of its energy below 100 Hz (outside the speech band).\n\n", md(pd.DataFrame(rowsn))]
 
+# ---------------------------------------------------------------- 8. SSL CNN, semi-supervised, baselines
 cs = []
 for f in glob.glob(str(V2 / "cnn_ssl/*_seed*.json")):
     cs.append(json.loads(open(f).read()))
@@ -315,10 +330,12 @@ if fb:
     f.columns = [" ".join(x) for x in f.columns]
     out += ["\n### Same comparison on acoustic features (LinearSVC)\n", md(f.reset_index())]
 
+# ---------------------------------------------------------------- 9. data checks
 dup = load("duplicates.json")
 if dup:
     out += ["\n## 9. Data-leakage checks\n", "```\n" + json.dumps(dup, indent=1) + "\n```\n"]
 
+# ---------------------------------------------------------------- 10. embeddings / layer weights
 try:
     from sklearn.manifold import TSNE
 
@@ -337,7 +354,7 @@ try:
     fig.savefig(PL / "layer_weights.png", dpi=150); plt.close(fig)
     out += ["\n## 10. Representation analysis\n", "`plots/tsne.png` (checked visually): WavLM embeddings form clearly separated islands per corpus (CREMA-D, RAVDESS, SAVEE, EMO-DB, UA-SER, TESS), while emotions are mixed inside each island except in the small, very acted corpora; the model must learn emotion across strong corpus offsets, which explains the cross-corpus drop. "
             "`plots/layer_weights.png`: learned weights over WavLM layers.\n"]
-except Exception as e:
+except Exception as e:  # plots are optional
     out.append(f"\n(t-SNE skipped: {e})\n")
 
 (V2 / "FINAL_RESULTS.md").write_text("".join(out), encoding="utf-8")

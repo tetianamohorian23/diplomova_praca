@@ -1,16 +1,0 @@
-Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 9827.74it/s]
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 8333.17it/s]
-Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 6872.18it/s]
-Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 11262.68it/s]
-Loading weights:   0%|          | 0/248 [00:00<?, ?it/s]Loading weights: 100%|##########| 248/248 [00:00<00:00, 6186.33it/s]
-clean {'frozen, clean training': 0.717, 'frozen, noise-augmented': 0.774, 'fine-tuned, clean training': 0.75, 'fine-tuned, noise-augmented': 0.713}
-white_20 {'frozen, clean training': 0.499, 'frozen, noise-augmented': 0.669, 'fine-tuned, clean training': 0.652, 'fine-tuned, noise-augmented': 0.685}
-white_10 {'frozen, clean training': 0.257, 'frozen, noise-augmented': 0.54, 'fine-tuned, clean training': 0.609, 'fine-tuned, noise-augmented': 0.661}
-white_5 {'frozen, clean training': 0.101, 'frozen, noise-augmented': 0.495, 'fine-tuned, clean training': 0.543, 'fine-tuned, noise-augmented': 0.647}
-white_0 {'frozen, clean training': 0.036, 'frozen, noise-augmented': 0.394, 'fine-tuned, clean training': 0.397, 'fine-tuned, noise-augmented': 0.59}
-pink_10 {'frozen, clean training': 0.331, 'frozen, noise-augmented': 0.563, 'fine-tuned, clean training': 0.62, 'fine-tuned, noise-augmented': 0.67}
-babble_20 {'frozen, clean training': 0.562, 'frozen, noise-augmented': 0.695, 'fine-tuned, clean training': 0.589, 'fine-tuned, noise-augmented': 0.697}
-babble_10 {'frozen, clean training': 0.273, 'frozen, noise-augmented': 0.525, 'fine-tuned, clean training': 0.367, 'fine-tuned, noise-augmented': 0.637}
-babble_5 {'frozen, clean training': 0.171, 'frozen, noise-augmented': 0.439, 'fine-tuned, clean training': 0.254, 'fine-tuned, noise-augmented': 0.553}
-reverb_0.3 {'frozen, clean training': 0.515, 'frozen, noise-augmented': 0.516, 'fine-tuned, clean training': 0.447, 'fine-tuned, noise-augmented': 0.478}

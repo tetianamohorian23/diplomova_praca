@@ -20,7 +20,7 @@ X = load_features("wavlm_base_plus")
 rows = np.load(V2 / "emb_noisy_trainval_rows.npy")
 Xn = np.load(V2 / "emb_noisy_trainval.npy")[rows].astype(np.float32)
 X2 = np.concatenate([X, Xn])
-d2 = pd.concat([data, data.iloc[rows]], ignore_index=True)
+d2 = pd.concat([data, data.iloc[rows]], ignore_index=True)  # noisy copies keep label / split / corpus
 clean_f1 = []
 for seed in range(5):
     res, *_ = run_one("wavlm_base_plus", X2, d2, "none", 0.0, seed, save_path=out / f"wavlm_head_seed{seed}.pt")

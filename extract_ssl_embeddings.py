@@ -39,7 +39,7 @@ def main() -> None:
             wave = (wave - wave.mean()) / (wave.std() + 1e-7)
             with torch.autocast(args.device, dtype=torch.bfloat16, enabled=args.device == "cuda"):
                 out = model(torch.from_numpy(wave)[None].to(args.device), output_hidden_states=True)
-            hs = torch.stack(out.hidden_states, 0)[:, 0].float()
+            hs = torch.stack(out.hidden_states, 0)[:, 0].float()  # (layers, T, H)
             means.append(hs.mean(1).cpu().numpy().astype(np.float16))
             stds.append(hs.std(1).cpu().numpy().astype(np.float16))
             if i % 200 == 0:

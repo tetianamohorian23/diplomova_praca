@@ -30,7 +30,7 @@ lens = np.load(V2 / "cnn_ssl/lengths.npy")
 te = d[d.experiment_split == "test"]
 sub = np.concatenate([te[te.label_id == c].sample(min(int((te.label_id == c).sum()), 150), random_state=0).index.to_numpy() for c in range(len(LABELS))])
 if os.environ.get("SMOKE"):
-    sub = sub[:: 25]
+    sub = sub[:: 25]  # quick plumbing test
 y = d.label_id.to_numpy()[sub]
 pool_rows = np.where(d.experiment_split.isin(["train", "validation"]))[0]
 
@@ -53,7 +53,7 @@ def hum(n, rng):
 def reverb(w, rt60, rng):
     n = int(rt60 * SR); t = np.arange(n) / SR
     rir = rng.standard_normal(n) * np.exp(-6.9 * t / rt60); rir[0] = 1.0
-    from scipy.signal import fftconvolve
+    from scipy.signal import fftconvolve  # FFT convolution: np.convolve with a 0.8 s RIR took minutes per condition
     out = fftconvolve(w, rir / np.linalg.norm(rir), mode="full")[: len(w)]
     return (out * (np.sqrt(np.mean(w ** 2)) / (np.sqrt(np.mean(out ** 2)) + 1e-9))).astype(np.float32)
 
@@ -83,6 +83,7 @@ CONDS = (["clean"] + [f"white_{s}" for s in (20, 10, 5, 0)] + ["pink_10"] + [f"b
          ["reverb_0.3", "reverb_0.8", "telephone", "lowpass", "brown_10", "hum_10", "clip"])
 SEEN = {c for c in CONDS if c.split("_")[0] in ("clean", "white", "pink", "babble")}
 
+# ---- frozen systems
 enc = AutoModel.from_pretrained("microsoft/wavlm-base-plus").eval().to(dev)
 
 
@@ -104,6 +105,7 @@ def frozen_feats(w):
     return torch.cat([hs.mean(1), hs.std(1)], 1).float().cpu()[None]
 
 
+# ---- fine-tuned systems
 def load_ft(path):
     ck = torch.load(path, map_location="cpu"); a = ck["args"]
     m = SSLClassifier(a["model"], int(d["dataset_id"].max()) + 1, a["mode"], a["mask_prob"]); m.load_state_dict(ck["state"]); return m.eval().to(dev)
@@ -124,7 +126,7 @@ def ft_probs(models, w):
     return np.mean(out, 0)
 
 
-PARTIAL = V2 / "noise_all_partial.json"
+PARTIAL = V2 / "noise_all_partial.json"  # resume: conditions finished in an earlier (interrupted) run
 results = json.loads(PARTIAL.read_text()) if PARTIAL.exists() else {}
 for ci, cond in enumerate(CONDS):
     if cond in results:

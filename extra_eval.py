@@ -21,6 +21,7 @@ def mf1(y, p):
 
 
 if stage == "grouped_cv":
+    # 5-fold CV where whole speakers are held out (all 13,406 clips); 3 seeds per fold
     X = load_features("wavlm_base_plus")
     spk = data.speaker_id.to_numpy()
     out = {"folds": [], "pooled_probs": np.zeros((len(data), len(LABELS)))}
@@ -53,7 +54,7 @@ if stage == "grouped_cv":
 elif stage == "loco_norm":
     X = load_features("wavlm_base_plus")
     Xn = X.copy()
-    for c in data.dataset.unique():
+    for c in data.dataset.unique():  # per-corpus standardisation of every layer feature (unlabelled statistics only)
         m = (data.dataset == c).to_numpy()
         Xn[m] = (X[m] - X[m].mean(0, keepdims=True)) / (X[m].std(0, keepdims=True) + 1e-5)
     rows = []

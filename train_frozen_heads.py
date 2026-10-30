@@ -57,7 +57,7 @@ class Head(nn.Module):
 
 def load_features(tag: str) -> np.ndarray:
     z = np.load(CACHE.parent / f"emb_{tag}.npz")
-    return np.concatenate([z["mean"], z["std"]], axis=2).astype(np.float32)
+    return np.concatenate([z["mean"], z["std"]], axis=2).astype(np.float32)  # (N, L, 2H)
 
 
 def metrics(y, p) -> dict:
@@ -85,6 +85,7 @@ def run_one(tag, X, data, mode, lam, seed, holdout=None, epochs=60, patience=10,
             raise ValueError("empty train")
     else:
         train_m, val_m, test_m = split == "train", split == "validation", split == "test"
+    # TESS has no train rows in the default split; keep its val rows out of training in both modes.
     mu = X[train_m].mean(0, keepdims=True)
     sd = X[train_m].std(0, keepdims=True) + 1e-5
     Xn = torch.from_numpy((X - mu) / sd)
@@ -113,6 +114,7 @@ def run_one(tag, X, data, mode, lam, seed, holdout=None, epochs=60, patience=10,
         for i in range(0, len(perm), 128):
             b = perm[i : i + 128]
             xb = Xn[b] + noise * torch.randn_like(Xn[b])
+            # mixup-free, feature-noise augmentation; GRL scale ramps up as in DANN
             p = (epoch - 1) / epochs
             scale = 2.0 / (1.0 + np.exp(-10 * p)) - 1.0
             logits, dom = model(xb, scale)
@@ -133,7 +135,7 @@ def run_one(tag, X, data, mode, lam, seed, holdout=None, epochs=60, patience=10,
             if stale >= patience:
                 break
     model.load_state_dict(best_state)
-    if save_path is not None:
+    if save_path is not None:  # inference bundle used by predict_emotion.py
         torch.save({"state": best_state, "mu": torch.from_numpy(mu), "sd": torch.from_numpy(sd),
                     "layers": X.shape[1], "dim": X.shape[2], "labels": LABELS, "mode": mode,
                     "domains": int(d.max()) + 1}, save_path)
